@@ -1,18 +1,61 @@
 using System.Collections.ObjectModel;
 using Epam.TestAutomation.Core.Browser;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 
 namespace Epam.TestAutomation.Core.Elements;
 
-public class BaseElement
+public abstract class BaseElement
 {
-    protected IWebElement FindElement(By by) => DriverFactory.Driver.FindElement(by);
+    public IWebElement Element { get; }
 
-    protected ReadOnlyCollection<IWebElement> FindElements(By by) => DriverFactory.Driver.FindElements(by);
+    protected BaseElement(By locator)
+    {
+        Element = DriverFactory.Driver.FindElement(locator);
+    }
 
-    protected void ClickButton(By selector) => FindElement(selector).Click();
+    public string GetText() => Element.Text.Trim();
+    public string GetTextFromAttribute() => Element.GetAttribute("innerText");
+    public void Click() => Element.Click();
+    public void SendKeys(string text) => Element.SendKeys(text);
+    public void ClearField() => Element.Clear();
+    public bool IsElementDisplayedOnPage() => Element.Displayed;
+    public bool IsElementEnabled() => Element.Enabled;
+    public IWebElement FindElement(By locator) => DriverFactory.Driver.FindElement(locator);
+    public ReadOnlyCollection<IWebElement> FindElements(By locator) => DriverFactory.Driver.FindElements(locator);
 
-    protected void InputDataToField(By selector, string textToType) => FindElement(selector).SendKeys(textToType);
+    public bool IsElementOnView()
+    {
+        var script = "var elem = arguments[0],                 " +
+                     "  box = elem.getBoundingClientRect(),    " +
+                     "  cx = box.left + box.width / 2,         " +
+                     "  cy = box.top + box.height / 2,         " +
+                     "  e = document.elementFromPoint(cx, cy); " +
+                     "for (; e; e = e.parentElement) {         " +
+                     "  if (e === elem)                        " +
+                     "    return true;                         " +
+                     "}                                        " +
+                     "return false;                            ";
+        return (bool)DriverFactory.Driver.ExecuteScript(script, Element);
+    }
 
-    protected bool IsElementDisplayedOnPage(By selector) => FindElement(selector).Displayed;
+    public void ClickUsingJS()
+    {
+        DriverFactory.Driver.ExecuteScript("arguments[0].click()", Element);
+    }
+
+    public void DragAndDrop(BaseElement targetElement)
+    {
+        CreateAction().DragAndDrop(Element, targetElement.Element).Build().Perform();
+    }
+
+    public void DoubleClick()
+    {
+        CreateAction().DoubleClick(Element).Build().Perform();
+    }
+
+    private Actions CreateAction()
+    {
+        return DriverFactory.Driver.GetActions();
+    }
 }

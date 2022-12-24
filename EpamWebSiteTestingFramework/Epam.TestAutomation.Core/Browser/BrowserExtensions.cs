@@ -1,6 +1,8 @@
 using System.Collections.ObjectModel;
 using Epam.TestAutomation.Core.Helper;
+using Epam.TestAutomation.Utilities.Logger;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 
 namespace Epam.TestAutomation.Core.Browser;
@@ -39,7 +41,7 @@ public static class BrowserExtensions
 
     public static void Quit(this IWebDriver webDriver)
     {
-        // MyLogger.Info("Quit Browser");
+        MyLogger.Info("Quit Browser");
         try
         {
             webDriver!.Quit();
@@ -47,7 +49,7 @@ public static class BrowserExtensions
 
         catch (Exception ex)
         {
-            // MyLogger.Error($"Unable to Quit the browser. Reason: {ex.Message}");
+            MyLogger.Error($"Unable to Quit the browser. Reason: {ex.Message}");
         }
     }
 
@@ -85,9 +87,14 @@ public static class BrowserExtensions
         }
         catch (WebDriverTimeoutException e)
         {
-            // Logger.Info($"Error: Timeout Exception thrown while running JS Script:{e.Message}-{e.StackTrace}");
+            MyLogger.Info($"Error: Timeout Exception thrown while running JS Script:{e.Message}-{e.StackTrace}");
         }
 
         return null!;
+    }
+
+    public static Actions GetActions(this IWebDriver webDriver)
+    {
+        return new Actions(webDriver);
     }
 }

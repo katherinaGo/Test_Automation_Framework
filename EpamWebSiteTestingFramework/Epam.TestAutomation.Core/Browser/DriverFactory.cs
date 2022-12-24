@@ -1,3 +1,4 @@
+using Epam.TestAutomation.Core.Enums;
 using Epam.TestAutomation.Core.Helper;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;

@@ -1,19 +1,37 @@
-using Epam.TestAutomation.Core.Browser;
-using Epam.TestAutomation.Core.Utilities;
+using Epam.TestAutomation.Core.Enums;
+using Epam.TestAutomation.Core.Utils;
+using Epam.TestAutomation.TestData;
+using Epam.TestAutomation.Utilities.JsonParser;
 
 namespace Epam.TestAutomation.Core.Helper;
 
 public static class UiTestSettings
 {
-    public static readonly BrowserType Browser =
-        AppUtils.ParseEnum<BrowserType>(TestSettings.GetConfigurationValue("Browser") ?? "undefind");
+    private static TestInfo TestInfo { get; set; }
 
-    public static readonly TimeSpan WebDriverTimeOut =
-        TimeSpan.FromSeconds(int.Parse(TestSettings.GetConfigurationValue("WebDriverTimeOut") ?? "0"));
+    public static BrowserType Browser => EnumUtils.GetEnumValueByDescription<BrowserType>("DefaultBrowser");
 
-    public static readonly TimeSpan WaitElementTimeOut =
-        TimeSpan.FromSeconds(int.Parse(TestSettings.GetConfigurationValue("WaitElementTimeOut") ?? "0"));
+    public static string ScreenshotPath => TestInfo.ScreenshotPath;
 
-    public static readonly string ScreenShotPath = Path.Combine(Directory.GetCurrentDirectory(),
-        TestSettings.GetConfigurationValue("ScreenshotPath") ?? string.Empty);
+    public static string LogsPath => TestInfo.LogsPath;
+
+    public static TimeSpan WebDriverTimeOut => TimeSpan.FromSeconds(TestInfo.WebDriverTimeOut);
+
+    public static TimeSpan DefaultTimeOut => TimeSpan.FromSeconds(TestInfo.DefaultTimeOut);
+
+    // TODO refactor method
+    public static string ApplicationUrl()
+    {
+        GetTestInfo();
+        return TestInfo.ApplicationUrl;
+    }
+
+    private static TestInfo GetTestInfo()
+    {
+        var json =
+            File.ReadAllText(
+                "/Users/kate/RiderProjects/Test_Automation_Framework/EpamWebSiteTestingFramework/Epam.TestAutomation.TestData/testdata.json");
+        TestInfo = JsonParser.DeserializeJsonToObject<TestInfo>(json);
+        return TestInfo;
+    }
 }

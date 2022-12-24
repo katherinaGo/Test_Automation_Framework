@@ -6,8 +6,4 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\Epam.TestAutomation.Core\Epam.TestAutomation.Core.csproj" />
-    </ItemGroup>
-
 </Project>

@@ -1,9 +1,9 @@
 using Epam.TestAutomation.Core.Browser;
 using OpenQA.Selenium;
 
-namespace Epam.TestAutomation.Core.Utilities;
+namespace Epam.TestAutomation.Core.Utils;
 
-public class Waiter
+public static class Waiter
 {
     public static void WaitForPageLoading() => DriverFactory.Driver.Waiters().Until(condition =>
         DriverFactory.Driver.ExecuteScript("return document.readyState").Equals("complete"));
