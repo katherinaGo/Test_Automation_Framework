@@ -9,7 +9,7 @@ namespace Epam.TestAutomation.Core.Browser;
 public static class DriverFactory
 {
     private static IWebDriver _webDriver;
-    public static IWebDriver Driver => GetWebBrowser(UiTestSettings.Browser);
+    public static IWebDriver Driver => GetWebBrowser(UiTestSettings.GetCurrentBrowser);
 
     private static IWebDriver GetWebBrowser(BrowserType browserType)
     {

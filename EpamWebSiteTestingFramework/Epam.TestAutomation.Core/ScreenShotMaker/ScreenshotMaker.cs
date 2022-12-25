@@ -9,7 +9,7 @@ namespace Epam.TestAutomation.Core.ScreenShotMaker;
 
 public class ScreenshotMaker
 {
-    public static void TakeScreenshot(IWebDriver driver, string testName, string folderPath)
+    private static void TakeScreenshot(IWebDriver driver, string testName, string folderPath)
     {
         if (!Directory.Exists(folderPath))
         {
@@ -33,7 +33,7 @@ public class ScreenshotMaker
         try
         {
             MyLogger.Info("Generating of screenshot started.");
-            ScreenshotMaker.TakeScreenshot(DriverFactory.Driver, screenshotName, folderPath);
+            TakeScreenshot(DriverFactory.Driver, screenshotName, folderPath);
             MyLogger.Info("Generating of screenshot finished.");
         }
         catch (Exception ex)

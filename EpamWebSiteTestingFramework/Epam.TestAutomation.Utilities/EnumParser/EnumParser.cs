@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel;
 using System.Reflection;
 
-namespace Epam.TestAutomation.Core.Utils;
+namespace Epam.TestAutomation.Utilities.EnumParser;
 
-public static class EnumUtils
+public static class EnumParser
 {
     public static T ParseEnum<T>(string value) where T : IComparable, IFormattable, IConvertible
     {

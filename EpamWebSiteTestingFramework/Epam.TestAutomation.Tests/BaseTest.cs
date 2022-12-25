@@ -1,3 +1,4 @@
+using System.Reflection;
 using Epam.TestAutomation.Core.Browser;
 using Epam.TestAutomation.Core.Helper;
 using Epam.TestAutomation.Core.Utils;
@@ -11,7 +12,7 @@ public class BaseTest
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
-        MyLogger.InitLogger(TestContext.CurrentContext.Test.Name, TestContext.CurrentContext.TestDirectory);
+        MyLogger.InitLogger("logger", UiTestSettings.LogsPath);
     }
 
     [SetUp]
@@ -27,9 +28,9 @@ public class BaseTest
     {
         if (TestContext.CurrentContext.Result.Outcome.Status == NUnit.Framework.Interfaces.TestStatus.Failed)
         {
-            MyLogger.Info($"Test executions is failed in {TestContext.CurrentContext.Test.MethodName}");
-            ScreenshotMaker.SaveScreenshot(TestContext.CurrentContext.Test.MethodName,
-                Path.Combine(TestContext.CurrentContext.TestDirectory, UiTestSettings.ScreenshotPath));
+            MyLogger.Info($"Test executions is failed in '{MethodBase.GetCurrentMethod()}'");
+            ScreenshotMaker.SaveScreenshot(MethodBase.GetCurrentMethod()?.Name!, UiTestSettings.ScreenshotPath);
+            Path.Combine(UiTestSettings.ScreenshotPath, UiTestSettings.ScreenshotPath2);
         }
 
         MyLogger.Info("Test execution is finished.");
