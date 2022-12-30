@@ -11,7 +11,7 @@ public class BaseTest
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
-        MyLogger.InitLogger("logger", UiTestSettings.LogsPath);
+        MyLogger.InitLogger("logs_", UiTestSettings.LogsPath);
     }
 
     [SetUp]
