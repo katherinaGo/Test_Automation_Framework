@@ -17,8 +17,4 @@
       <ProjectReference Include="..\Epam.TestAutomation.TestData\Epam.TestAutomation.TestData.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Logs" />
-    </ItemGroup>
-
 </Project>
