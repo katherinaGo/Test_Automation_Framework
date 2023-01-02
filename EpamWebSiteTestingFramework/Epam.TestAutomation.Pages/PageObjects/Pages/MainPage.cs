@@ -8,12 +8,22 @@ namespace Epam.TestAutomation.Pages.PageObjects.Pages;
 
 public class MainPage : BasePage
 {
-    public Label EngineeringTheFutureBanner = new Label(
+    private readonly Label EngineeringTheFutureBanner = new Label(
         By.XPath("//*[contains(@class, 'background-video-ui background-video--narrow')]"));
 
     public override bool IsOpened()
     {
-        if (DriverFactory.Driver.Url.Equals(UiTestSettings.ApplicationUrl()))
+        if (DriverFactory.Driver.Url.Equals(UiTestSettings.ApplicationUrl))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool IsEngineeringTheFutureBannerDisplayed()
+    {
+        if (EngineeringTheFutureBanner.IsElementDisplayedOnPage())
         {
             return true;
         }

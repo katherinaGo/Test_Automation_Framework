@@ -14,7 +14,10 @@ public static class EnumParser
     {
         var type = typeof(T);
         if (!type.IsEnum)
+        {
             throw new ArgumentException();
+        }
+
         FieldInfo[] fields = type.GetFields();
         var field = fields
             .SelectMany(f => f.GetCustomAttributes(

@@ -6,7 +6,7 @@ using Epam.TestAutomation.Core.ScreenShotMaker;
 
 namespace Epam.TestAutomation.Tests;
 
-public class BaseTest
+public abstract class BaseTest
 {
     [OneTimeSetUp]
     public void OneTimeSetUp()
@@ -18,20 +18,26 @@ public class BaseTest
     public void SetUp()
     {
         MyLogger.Info("Test execution is started.");
-        DriverFactory.Driver.GotToUrl(UiTestSettings.ApplicationUrl());
+        DriverFactory.Driver.GotToWebPageUrl(UiTestSettings.ApplicationUrl);
         Waiter.WaitForPageLoading();
     }
 
     [TearDown]
     public void TearDown()
     {
+        if (TestContext.CurrentContext.Result.Outcome.Status == NUnit.Framework.Interfaces.TestStatus.Passed)
+        {
+            MyLogger.Info($"Test '{TestContext.CurrentContext.Test.MethodName}' is passed.");
+        }
+
         if (TestContext.CurrentContext.Result.Outcome.Status == NUnit.Framework.Interfaces.TestStatus.Failed)
         {
             MyLogger.Info($"Test '{TestContext.CurrentContext.Test.MethodName}' is failed.");
             ScreenshotMaker.SaveScreenshot(TestContext.CurrentContext.Test.MethodName, UiTestSettings.ScreenshotPath);
         }
 
-        MyLogger.Info("Test execution is finished.");
-        DriverFactory.Driver.Quit();
+        MyLogger.Info($"'{TestContext.CurrentContext.Test.ClassName}' execution is finished.");
+        DriverFactory.Driver.QuitBrowser();
+        DriverFactory.DestroyWebBrowser();
     }
 }

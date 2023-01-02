@@ -14,24 +14,25 @@ public static class BrowserExtensions
         return webDriver.Url;
     }
 
-    public static void Back(this IWebDriver webDriver)
+    public static void GoBack(this IWebDriver webDriver)
     {
         webDriver!.Navigate().Back();
     }
 
-    public static void Refresh(this IWebDriver webDriver)
+    public static void RefreshPage(this IWebDriver webDriver)
     {
         webDriver!.Navigate().Refresh();
     }
 
-    public static void GotToUrl(this IWebDriver webDriver, string url)
+    public static void GotToWebPageUrl(this IWebDriver webDriver, string url)
     {
-        webDriver!.Navigate().GoToUrl(url);
+        webDriver.Navigate().GoToUrl(url);
     }
 
-    public static void Close(this IWebDriver webDriver)
+    public static void CloseBrowser(this IWebDriver webDriver)
     {
-        webDriver!.Close();
+        MyLogger.Info("Close Browser.");
+        webDriver.Close();
     }
 
     public static WebDriverWait Waiters(this IWebDriver webDriver)
@@ -39,12 +40,12 @@ public static class BrowserExtensions
         return new WebDriverWait(webDriver, UiTestSettings.WebDriverTimeOut);
     }
 
-    public static void Quit(this IWebDriver webDriver)
+    public static void QuitBrowser(this IWebDriver webDriver)
     {
-        MyLogger.Info("Quit Browser");
+        MyLogger.Info("Quit Browser.");
         try
         {
-            webDriver!.Quit();
+            webDriver.Quit();
         }
 
         catch (Exception ex)
@@ -63,12 +64,12 @@ public static class BrowserExtensions
         ExecuteScript(webDriver, "arguments[0].scrollIntoView(true);", element);
     }
 
-    public static IWebElement FindElement(this IWebDriver webDriver, By locator)
+    public static IWebElement FindTheElement(this IWebDriver webDriver, By locator)
     {
         return webDriver!.FindElement(locator);
     }
 
-    public static ReadOnlyCollection<IWebElement> FindElements(this IWebDriver webDriver, By by)
+    public static ReadOnlyCollection<IWebElement> FindTheElements(this IWebDriver webDriver, By by)
     {
         return webDriver!.FindElements(by);
     }
@@ -96,5 +97,10 @@ public static class BrowserExtensions
     public static Actions GetActions(this IWebDriver webDriver)
     {
         return new Actions(webDriver);
+    }
+
+    public static void OpenNewTab(this IWebDriver webDriver)
+    {
+        webDriver.SwitchTo().NewWindow(WindowType.Tab);
     }
 }

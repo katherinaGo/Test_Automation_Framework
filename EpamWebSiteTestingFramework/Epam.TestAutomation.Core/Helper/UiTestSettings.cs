@@ -19,11 +19,9 @@ public static class UiTestSettings
     }
 
     public static string ScreenshotPath => TestInfo.ScreenshotPath;
-    public static string ScreenshotPath2 => TestInfo.ScreenshotPath2;
     public static string LogsPath => TestInfo.LogsPath;
     public static TimeSpan WebDriverTimeOut => TimeSpan.FromSeconds(TestInfo.WebDriverTimeOut);
-    public static TimeSpan DefaultTimeOut => TimeSpan.FromSeconds(TestInfo.DefaultTimeOut);
     public static BrowserType GetCurrentBrowser => Browser;
 
-    public static string ApplicationUrl() => TestInfo.ApplicationUrl;
+    public static string ApplicationUrl => TestInfo.ApplicationUrl;
 }

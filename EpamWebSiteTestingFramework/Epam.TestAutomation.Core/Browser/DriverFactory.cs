@@ -1,5 +1,6 @@
 using Epam.TestAutomation.Core.Enums;
 using Epam.TestAutomation.Core.Helper;
+using Epam.TestAutomation.Utilities.Logger;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Safari;
@@ -8,35 +9,45 @@ namespace Epam.TestAutomation.Core.Browser;
 
 public static class DriverFactory
 {
-    private static IWebDriver _webDriver;
-    public static IWebDriver Driver => GetWebBrowser(UiTestSettings.GetCurrentBrowser);
+    private static IWebDriver? _driver;
+    private static BrowserType _currentBrowser;
 
-    private static IWebDriver GetWebBrowser(BrowserType browserType)
+    public static IWebDriver Driver => GetWebBrowser();
+
+
+    public static void DestroyWebBrowser()
+    {
+        _driver = null;
+    }
+
+    private static IWebDriver GetWebBrowser()
     {
         try
         {
-            if (_webDriver == null)
+            if (_driver == null)
             {
-                switch (browserType)
+                _currentBrowser = UiTestSettings.GetCurrentBrowser;
+                switch (_currentBrowser)
                 {
                     case BrowserType.Chrome:
-                        _webDriver = GetChromeConfiguredBrowser();
+                        _driver = GetChromeConfiguredBrowser();
                         break;
                     case BrowserType.Safari:
-                        _webDriver = GetSafariConfiguredBrowser();
+                        _driver = GetSafariConfiguredBrowser();
                         break;
                     default:
-                        _webDriver = GetChromeConfiguredBrowser();
+                        _driver = GetChromeConfiguredBrowser();
                         break;
                 }
             }
+
+            return _driver;
         }
         catch (Exception ex)
         {
-            throw new Exception("Failed to create browser instance", ex);
+            MyLogger.Error($"Failed to create browser instance, {ex.Message}");
+            throw new Exception("Failed to create browser instance.", ex);
         }
-
-        return _webDriver;
     }
 
     private static IWebDriver GetChromeConfiguredBrowser()
@@ -44,7 +55,7 @@ public static class DriverFactory
         var chromeOptions = new ChromeOptions();
         chromeOptions.AddArgument("--start-maximized");
         var service = ChromeDriverService.CreateDefaultService();
-        var chromeDriver = new ChromeDriver(service, chromeOptions, TimeSpan.FromMinutes(3));
+        var chromeDriver = new ChromeDriver(service, chromeOptions, TimeSpan.FromMinutes(2));
         return chromeDriver;
     }
 

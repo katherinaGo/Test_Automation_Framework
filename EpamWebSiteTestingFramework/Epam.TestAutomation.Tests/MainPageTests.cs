@@ -16,6 +16,15 @@ public class MainPageTests : BaseTest
     public void CheckIfMainPageIsOpenedTest()
     {
         var isPageOpened = MainPage.IsOpened();
-        Assert.That(isPageOpened, Is.True, "Main page is not opened.");
+        Assert.That(isPageOpened, Is.True,
+            $"Url '{MainPage.GetPageUrl()}' of opened page doesn't correspond to the main app url. ");
+    }
+
+    [Test]
+    public void CheckIfEngineerBannerDisplayed()
+    {
+        var isBannerDisplayed = MainPage.IsEngineeringTheFutureBannerDisplayed();
+        Assert.That(isBannerDisplayed, Is.True,
+            $"'EngineeringTheFutureBanner' is not displayed on the page '{MainPage.GetPageUrl()}'");
     }
 }

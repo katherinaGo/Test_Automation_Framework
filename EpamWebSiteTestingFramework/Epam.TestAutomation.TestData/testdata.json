@@ -1,7 +1,6 @@
 {
   "applicationUrl": "https://www.epam.com/",
   "screenshotPath": "/Users/kate/RiderProjects/Test_Automation_Framework/EpamWebSiteTestingFramework/Epam.TestAutomation.Tests/Screenshots",
-  "screenshotPath2": "/Users/kate/RiderProjects/Test_Automation_Framework/EpamWebSiteTestingFramework/Epam.TestAutomation.Tests/Screenshots2",
   "logsPath": "/Users/kate/RiderProjects/Test_Automation_Framework/EpamWebSiteTestingFramework/Epam.TestAutomation.Utilities/Logs",
   "webDriverTimeOut": 60,
   "defaultTimeOut": 80
