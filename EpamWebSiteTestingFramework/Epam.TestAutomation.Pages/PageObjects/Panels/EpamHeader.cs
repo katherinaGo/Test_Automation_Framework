@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 
 namespace Epam.TestAutomation.Pages.PageObjects.Panels;
 
-public class Header : BaseElement
+public class EpamHeader : BaseElement
 {
     public Panel HeaderPanel = new Panel(By.XPath("//*[@class='header-ui']"));
     public Label EpamLogo = new Label(By.XPath("//*[@class='header__logo']"));
@@ -17,7 +17,10 @@ public class Header : BaseElement
     public Dropdown LanguageDropdown = new Dropdown(By.XPath("//*[@class='location-selector__button']"));
     public Button SearchButton = new Button(By.XPath("//*[@class='header-search__button header__icon']"));
 
-    public Header(By locator) : base(locator)
+    public ElementsList<Button> HeaderButtons =
+        new ElementsList<Button>(By.XPath("//*[@class='top-navigation__item-link']"));
+
+    public EpamHeader(By locator) : base(locator)
     {
     }
 }

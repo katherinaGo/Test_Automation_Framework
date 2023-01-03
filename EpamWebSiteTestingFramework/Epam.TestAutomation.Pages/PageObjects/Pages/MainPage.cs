@@ -11,23 +11,15 @@ public class MainPage : BasePage
     private readonly Label EngineeringTheFutureBanner = new Label(
         By.XPath("//*[contains(@class, 'background-video-ui background-video--narrow')]"));
 
-    public override bool IsOpened()
-    {
-        if (DriverFactory.Driver.Url.Equals(UiTestSettings.ApplicationUrl))
-        {
-            return true;
-        }
+    private readonly Button SliderButton = new Button(By.XPath("//*[@class='slider__navigation']"));
 
-        return false;
-    }
+    private readonly Label EpamLogo = new Label(By.XPath("//*[@class='header__logo']"));
 
-    public bool IsEngineeringTheFutureBannerDisplayed()
-    {
-        if (EngineeringTheFutureBanner.IsElementDisplayedOnPage())
-        {
-            return true;
-        }
+    public override bool IsOpened() => DriverFactory.Driver.GetUrl().Equals(UiTestSettings.ApplicationUrl);
 
-        return false;
-    }
+    public bool IsEngineeringTheFutureBannerDisplayed() => EngineeringTheFutureBanner.IsElementDisplayedOnPage();
+
+    public bool IsEpamLogoDisplayed() => EpamLogo.IsElementDisplayedOnPage();
+
+    public bool IsSliderDisplayed() => SliderButton.IsElementDisplayedOnPage();
 }

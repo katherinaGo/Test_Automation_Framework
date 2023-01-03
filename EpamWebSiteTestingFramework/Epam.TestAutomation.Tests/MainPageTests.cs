@@ -4,14 +4,6 @@ namespace Epam.TestAutomation.Tests;
 
 public class MainPageTests : BaseTest
 {
-    private MainPage MainPage { get; set; }
-
-    [SetUp]
-    public void SetUp()
-    {
-        MainPage = new MainPage();
-    }
-
     [Test]
     public void CheckIfMainPageIsOpenedTest()
     {
@@ -25,6 +17,14 @@ public class MainPageTests : BaseTest
     {
         var isBannerDisplayed = MainPage.IsEngineeringTheFutureBannerDisplayed();
         Assert.That(isBannerDisplayed, Is.True,
+            $"'EngineeringTheFutureBanner' is not displayed on the page '{MainPage.GetPageUrl()}'");
+    }
+
+    [Test]
+    public void CheckIfSliderDisplayed()
+    {
+        var isSliderDisplayed = MainPage.IsSliderDisplayed();
+        Assert.That(isSliderDisplayed, Is.True,
             $"'EngineeringTheFutureBanner' is not displayed on the page '{MainPage.GetPageUrl()}'");
     }
 }

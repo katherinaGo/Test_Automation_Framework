@@ -21,8 +21,8 @@ public abstract class BaseElement
     public void ClearField() => Element.Clear();
     public bool IsElementDisplayedOnPage() => Element.Displayed;
     public bool IsElementEnabled() => Element.Enabled;
-    public IWebElement FindElement(By locator) => DriverFactory.Driver.FindElement(locator);
-    public ReadOnlyCollection<IWebElement> FindElements(By locator) => DriverFactory.Driver.FindElements(locator);
+    public IWebElement FindTheElement(By locator) => DriverFactory.Driver.FindElement(locator);
+    public ReadOnlyCollection<IWebElement> FindTheElements(By locator) => DriverFactory.Driver.FindElements(locator);
 
     public bool IsElementOnView()
     {
