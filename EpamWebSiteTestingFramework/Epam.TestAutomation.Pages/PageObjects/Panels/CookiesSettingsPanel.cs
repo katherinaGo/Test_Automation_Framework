@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 
 namespace Epam.TestAutomation.Pages.PageObjects.Panels;
 
-public class CookiesSettingsPanel : BaseElement
+public class CookiesSettingsPanel : Panel
 {
     public Button AcceptAllButton = new Button(By.Id("accept-recommended-btn-handler"));
     public Button RejectAllButton = new Button(By.XPath("//*[@class='ot-pc-refuse-all-handler']"));

@@ -1,5 +1,5 @@
 using System.Collections.ObjectModel;
-using Epam.TestAutomation.Core.Browser;
+using Epam.TestAutomation.Core.DriverCreator;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 
@@ -11,7 +11,7 @@ public abstract class BaseElement
 
     protected BaseElement(By locator)
     {
-        Element = DriverFactory.Driver.FindElement(locator);
+        Element = Browser.Driver.FindElement(locator);
     }
 
     public string GetText() => Element.Text.Trim();
@@ -21,8 +21,8 @@ public abstract class BaseElement
     public void ClearField() => Element.Clear();
     public bool IsElementDisplayedOnPage() => Element.Displayed;
     public bool IsElementEnabled() => Element.Enabled;
-    public IWebElement FindTheElement(By locator) => DriverFactory.Driver.FindElement(locator);
-    public ReadOnlyCollection<IWebElement> FindTheElements(By locator) => DriverFactory.Driver.FindElements(locator);
+    public IWebElement FindTheElement(By locator) => Browser.Driver.FindElement(locator);
+    public ReadOnlyCollection<IWebElement> FindTheElements(By locator) => Browser.Driver.FindElements(locator);
 
     public bool IsElementOnView()
     {
@@ -36,12 +36,12 @@ public abstract class BaseElement
                      "    return true;                         " +
                      "}                                        " +
                      "return false;                            ";
-        return (bool)DriverFactory.Driver.ExecuteScript(script, Element);
+        return (bool)Browser.Driver.ExecuteScript(script, Element);
     }
 
     public void ClickUsingJS()
     {
-        DriverFactory.Driver.ExecuteScript("arguments[0].click()", Element);
+        Browser.Driver.ExecuteScript("arguments[0].click()", Element);
     }
 
     public void DragAndDrop(BaseElement targetElement)
@@ -56,6 +56,6 @@ public abstract class BaseElement
 
     private Actions CreateAction()
     {
-        return DriverFactory.Driver.GetActions();
+        return Browser.Driver.GetActions();
     }
 }

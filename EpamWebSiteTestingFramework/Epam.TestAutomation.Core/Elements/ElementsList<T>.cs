@@ -1,5 +1,5 @@
 using System.Collections.ObjectModel;
-using Epam.TestAutomation.Core.Browser;
+using Epam.TestAutomation.Core.DriverCreator;
 using OpenQA.Selenium;
 
 namespace Epam.TestAutomation.Core.Elements;
@@ -28,6 +28,6 @@ public class ElementsList<T>
             return _element.FindElements(locator);
         }
 
-        return DriverFactory.Driver.FindElements(locator);
+        return Browser.Driver.FindElements(locator);
     }
 }

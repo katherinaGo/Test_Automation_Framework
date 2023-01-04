@@ -1,4 +1,4 @@
-using Epam.TestAutomation.Core.Browser;
+using Epam.TestAutomation.Core.DriverCreator;
 using Epam.TestAutomation.Utilities.Logger;
 using OpenQA.Selenium;
 
@@ -24,7 +24,7 @@ public static class ScreenshotMaker
         try
         {
             MyLogger.Info("Generating of screenshot started.");
-            TakeScreenshot(DriverFactory.Driver, screenshotName, folderPath);
+            TakeScreenshot(Browser.Driver, screenshotName, folderPath);
             MyLogger.Info("Generating of screenshot finished.");
         }
         catch (Exception ex)

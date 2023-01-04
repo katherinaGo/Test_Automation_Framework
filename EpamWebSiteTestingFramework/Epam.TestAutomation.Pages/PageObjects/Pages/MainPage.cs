@@ -1,5 +1,5 @@
 ﻿using Epam.TestAutomation.Core.BasePage;
-using Epam.TestAutomation.Core.Browser;
+using Epam.TestAutomation.Core.DriverCreator;
 using Epam.TestAutomation.Core.Elements;
 using Epam.TestAutomation.Core.Helper;
 using OpenQA.Selenium;
@@ -15,7 +15,7 @@ public class MainPage : BasePage
 
     private readonly Label EpamLogo = new Label(By.XPath("//*[@class='header__logo']"));
 
-    public override bool IsOpened() => DriverFactory.Driver.GetUrl().Equals(UiTestSettings.ApplicationUrl);
+    public override bool IsOpened() => Browser.Driver.GetUrl().Equals(UiTestSettings.ApplicationUrl);
 
     public bool IsEngineeringTheFutureBannerDisplayed() => EngineeringTheFutureBanner.IsElementDisplayedOnPage();
 

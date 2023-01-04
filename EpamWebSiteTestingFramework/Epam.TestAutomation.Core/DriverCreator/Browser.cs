@@ -5,10 +5,12 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 
-namespace Epam.TestAutomation.Core.Browser;
+namespace Epam.TestAutomation.Core.DriverCreator;
 
-public static class BrowserExtensions
+public static class Browser
 {
+    public static IWebDriver Driver => DriverFactory.GetWebBrowser();
+
     public static string GetUrl(this IWebDriver webDriver)
     {
         return webDriver.Url;
@@ -46,6 +48,7 @@ public static class BrowserExtensions
         try
         {
             webDriver.Quit();
+            DriverFactory.DestroyWebBrowser();
         }
 
         catch (Exception ex)

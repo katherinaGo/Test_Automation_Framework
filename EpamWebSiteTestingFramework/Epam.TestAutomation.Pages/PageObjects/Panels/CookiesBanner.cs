@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 
 namespace Epam.TestAutomation.Pages.PageObjects.Panels;
 
-public class CookiesBanner : BaseElement
+public class CookiesBanner : Panel
 {
     public Panel CookiesPanel = new Panel(By.Id("onetrust-banner-sdk"));
     public Link CookiesSettings = new Link(By.Id("onetrust-pc-btn-handler"));

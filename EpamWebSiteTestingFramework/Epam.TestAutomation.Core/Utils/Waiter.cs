@@ -1,19 +1,19 @@
-using Epam.TestAutomation.Core.Browser;
+using Epam.TestAutomation.Core.DriverCreator;
 using OpenQA.Selenium;
 
 namespace Epam.TestAutomation.Core.Utils;
 
 public static class Waiter
 {
-    public static void WaitForPageLoading() => DriverFactory.Driver.Waiters().Until(condition =>
-        DriverFactory.Driver.ExecuteScript("return document.readyState").Equals("complete"));
+    public static void WaitForPageLoading() => Browser.Driver.Waiters().Until(condition =>
+        Browser.Driver.ExecuteScript("return document.readyState").Equals("complete"));
 
     public static void WaitForCondition(Func<bool> condition) =>
-        DriverFactory.Driver.Waiters().Until(x => condition.Invoke());
+        Browser.Driver.Waiters().Until(x => condition.Invoke());
 
     public static void WaitSpinner()
     {
-        DriverFactory.Driver.Waiters().Until(x =>
-            !DriverFactory.Driver.FindElement(By.XPath("//div[contains(@class,'grid__spinner')]")).Displayed);
+        Browser.Driver.Waiters().Until(x =>
+            !Browser.Driver.FindElement(By.XPath("//div[contains(@class,'grid__spinner')]")).Displayed);
     }
 }

@@ -5,22 +5,19 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Safari;
 
-namespace Epam.TestAutomation.Core.Browser;
+namespace Epam.TestAutomation.Core.DriverCreator;
 
 public static class DriverFactory
 {
     private static IWebDriver? _driver;
     private static BrowserType _currentBrowser;
 
-    public static IWebDriver Driver => GetWebBrowser();
-
-
-    public static void DestroyWebBrowser()
+    internal static void DestroyWebBrowser()
     {
         _driver = null;
     }
 
-    private static IWebDriver GetWebBrowser()
+    public static IWebDriver GetWebBrowser()
     {
         try
         {
