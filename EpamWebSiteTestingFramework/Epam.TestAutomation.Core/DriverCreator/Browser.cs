@@ -33,8 +33,8 @@ public static class Browser
 
     public static void CloseBrowser(this IWebDriver webDriver)
     {
-        MyLogger.Info("Close Browser.");
         webDriver.Close();
+        MyLogger.Info("Closed Browser.");
     }
 
     public static WebDriverWait Waiters(this IWebDriver webDriver)
@@ -44,11 +44,11 @@ public static class Browser
 
     public static void QuitBrowser(this IWebDriver webDriver)
     {
-        MyLogger.Info("Quit Browser.");
         try
         {
             webDriver.Quit();
             DriverFactory.DestroyWebBrowser();
+            MyLogger.Info("Quited Browser.");
         }
 
         catch (Exception ex)

@@ -18,17 +18,28 @@ public abstract class BaseTest
     }
 
     [SetUp]
-    public void SetUp()
+    public void LoggerSetUp()
     {
         MyLogger.Info("Test execution is started.");
+    }
+
+    [SetUp]
+    public void DriverSetUp()
+    {
         Browser.Driver.GotToWebPageUrl(UiTestSettings.ApplicationUrl);
         Waiter.WaitForPageLoading();
 
         MainPage = new MainPage();
     }
 
+    [SetUp]
+    public void PagesSetUp()
+    {
+        MainPage = new MainPage();
+    }
+
     [TearDown]
-    public void TearDown()
+    public void LoggerTearDown()
     {
         if (TestContext.CurrentContext.Result.Outcome.Status == NUnit.Framework.Interfaces.TestStatus.Passed)
         {
@@ -42,6 +53,11 @@ public abstract class BaseTest
         }
 
         MyLogger.Info($"'{TestContext.CurrentContext.Test.ClassName}' execution is finished.");
+    }
+
+    [TearDown]
+    public void DriverTearDown()
+    {
         Browser.Driver.QuitBrowser();
     }
 }
