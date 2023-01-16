@@ -4,7 +4,7 @@ using OpenQA.Selenium;
 
 namespace Epam.TestAutomation.Core.Elements;
 
-public class ElementsList<T>
+public class ElementsList
 {
     private readonly List<IWebElement> _elements;
     private readonly By _locator;

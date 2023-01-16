@@ -17,8 +17,8 @@ public class Header : Panel
     public Dropdown LanguageDropdown = new Dropdown(By.XPath("//*[@class='location-selector__button']"));
     public Button SearchButton = new Button(By.XPath("//*[@class='header-search__button header__icon']"));
 
-    public ElementsList<Button> HeaderButtons =
-        new ElementsList<Button>(By.XPath("//*[@class='top-navigation__item-link']"));
+    public ElementsList HeaderButtons =
+        new ElementsList(By.XPath("//*[@class='top-navigation__item-link']"));
 
     public Header(By locator) : base(locator)
     {
