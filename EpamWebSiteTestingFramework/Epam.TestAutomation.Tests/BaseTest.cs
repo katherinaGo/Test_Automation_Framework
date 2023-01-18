@@ -27,7 +27,6 @@ public abstract class BaseTest
         Waiter.WaitForPageLoading();
     }
 
-
     [TearDown]
     public void LoggerTearDown()
     {

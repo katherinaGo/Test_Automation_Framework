@@ -10,14 +10,13 @@ namespace Epam.TestAutomation.Pages.PageObjects.Pages;
 
 public class MainPage : BasePage
 {
+    private JobListingsPage _jobListingsPage;
     public Header EpamHeader => new Header(By.XPath("//*[@class='header-ui']"));
 
     public Label EngineeringTheFutureBanner => new Label(
         By.XPath("//*[contains(@class, 'background-video-ui background-video--narrow')]"));
 
     public Button SliderButton => new Button(By.XPath("//*[@class='slider__navigation']"));
-
-    private JobListingsPage _jobListingsPage;
 
     public MainPage()
     {

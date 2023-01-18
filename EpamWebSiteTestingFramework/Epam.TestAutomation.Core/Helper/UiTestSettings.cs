@@ -7,13 +7,6 @@ namespace Epam.TestAutomation.Core.Helper;
 
 public static class UiTestSettings
 {
-    private static BrowserType Browser => EnumParser.GetEnumValueByDescription<BrowserType>("DefaultBrowser");
-    private static ProjectSetUpInfo ProjectSetUpInfo => GetTestInfoFromJson();
-
-    private static ProjectSetUpInfo GetTestInfoFromJson() => JsonParser.Deserialize<ProjectSetUpInfo>(
-        "/Users/kate/RiderProjects/Test_Automation_Framework/EpamWebSiteTestingFramework/Epam.TestAutomation.TestData/projectsetup.json"
-    );
-
     public static string ScreenshotPath => ProjectSetUpInfo.ScreenshotPath;
     public static string LogsPath => ProjectSetUpInfo.LogsPath;
     public static TimeSpan WebDriverTimeOut => TimeSpan.FromSeconds(ProjectSetUpInfo.WebDriverTimeOut);
@@ -21,4 +14,10 @@ public static class UiTestSettings
 
     public static string ApplicationUrl => ProjectSetUpInfo.ApplicationUrl;
     public static string JobListingUrl => ProjectSetUpInfo.JobListingUrl;
+    private static BrowserType Browser => EnumParser.GetEnumValueByDescription<BrowserType>("DefaultBrowser");
+    private static ProjectSetUpInfo ProjectSetUpInfo => GetTestInfoFromJson();
+
+    private static ProjectSetUpInfo GetTestInfoFromJson() => JsonParser.Deserialize<ProjectSetUpInfo>(
+        "/Users/kate/RiderProjects/Test_Automation_Framework/EpamWebSiteTestingFramework/Epam.TestAutomation.TestData/projectsetup.json"
+    );
 }
