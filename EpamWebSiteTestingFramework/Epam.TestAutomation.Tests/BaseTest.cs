@@ -3,14 +3,11 @@ using Epam.TestAutomation.Core.Helper;
 using Epam.TestAutomation.Core.Utils;
 using Epam.TestAutomation.Utilities.Logger;
 using Epam.TestAutomation.Core.ScreenShotMaker;
-using Epam.TestAutomation.Pages.PageObjects.Pages;
 
 namespace Epam.TestAutomation.Tests;
 
 public abstract class BaseTest
 {
-    protected MainPage MainPage { get; set; }
-
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
@@ -28,15 +25,8 @@ public abstract class BaseTest
     {
         Browser.Driver.GotToWebPageUrl(UiTestSettings.ApplicationUrl);
         Waiter.WaitForPageLoading();
-
-        MainPage = new MainPage();
     }
 
-    [SetUp]
-    public void PagesSetUp()
-    {
-        MainPage = new MainPage();
-    }
 
     [TearDown]
     public void LoggerTearDown()

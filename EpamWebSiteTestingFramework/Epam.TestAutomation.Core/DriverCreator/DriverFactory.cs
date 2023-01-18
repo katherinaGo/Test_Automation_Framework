@@ -12,11 +12,6 @@ public static class DriverFactory
     private static IWebDriver? _driver;
     private static BrowserType _currentBrowser;
 
-    internal static void DestroyWebBrowser()
-    {
-        _driver = null;
-    }
-
     public static IWebDriver GetWebBrowser()
     {
         try
@@ -61,5 +56,10 @@ public static class DriverFactory
         var safariBrowser = new SafariDriver();
         safariBrowser.Manage().Window.Maximize();
         return safariBrowser;
+    }
+
+    internal static void DestroyWebBrowser()
+    {
+        _driver = null;
     }
 }

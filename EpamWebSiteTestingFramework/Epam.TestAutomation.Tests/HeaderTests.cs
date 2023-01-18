@@ -2,12 +2,23 @@ using Epam.TestAutomation.Pages.PageObjects.Pages;
 
 namespace Epam.TestAutomation.Tests;
 
-public class HeaderTests : BaseTest
+[TestFixture]
+[Parallelizable(ParallelScope.All)]
+public class
+    HeaderTests : BaseTest
 {
+    private MainPage _mainPage;
+
+    [SetUp]
+    public void PagesSetUp()
+    {
+        _mainPage = new MainPage();
+    }
+
     [Test]
     public void CheckIfEpamLogoDisplayed()
     {
-        var isLogoDisplayed = MainPage.IsEpamLogoDisplayed();
+        var isLogoDisplayed = _mainPage.IsEpamLogoDisplayed();
         Assert.That(isLogoDisplayed, Is.True,
             $"'Epam logo' is not displayed on the page '{MainPage.GetPageUrl()}'");
     }
