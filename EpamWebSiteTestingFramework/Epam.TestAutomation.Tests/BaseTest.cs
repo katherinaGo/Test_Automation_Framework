@@ -28,8 +28,6 @@ public abstract class BaseTest
     {
         Browser.Driver.GotToWebPageUrl(UiTestSettings.ApplicationUrl);
         Waiter.WaitForPageLoading();
-
-        MainPage = new MainPage();
     }
 
     [SetUp]
