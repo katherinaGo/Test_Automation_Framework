@@ -19,7 +19,7 @@ public static class UiTestSettings
     private static TestInfo GetTestInfoFromJson()
     {
         var json = File.ReadAllText(
-            "/Users/kate/RiderProjects/Test_Automation_Framework/EpamWebSiteTestingFramework/Epam.TestAutomation.TestData/testdata.json"
+            "EpamWebSiteTestingFramework/Epam.TestAutomation.TestData/testdata.json"
         );
         return JsonParser.DeserializeJsonToObject<TestInfo>(json);
     }
