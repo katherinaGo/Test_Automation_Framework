@@ -2,6 +2,7 @@ using Epam.TestAutomation.Core.Enums;
 using Epam.TestAutomation.TestData;
 using Epam.TestAutomation.Utilities.EnumParser;
 using Epam.TestAutomation.Utilities.JsonParser;
+using NUnit.Framework;
 
 namespace Epam.TestAutomation.Core.Helper;
 
@@ -19,8 +20,8 @@ public static class UiTestSettings
     private static TestInfo GetTestInfoFromJson()
     {
         var json = File.ReadAllText(
-            "Epam.TestAutomation.TestData/testdata.json"
-        );
+            Path.Combine(Directory.GetCurrentDirectory(),
+                TestContext.Parameters.Get("Epam.TestAutomation.TestData/testdata.json")));
         return JsonParser.DeserializeJsonToObject<TestInfo>(json);
     }
 }
