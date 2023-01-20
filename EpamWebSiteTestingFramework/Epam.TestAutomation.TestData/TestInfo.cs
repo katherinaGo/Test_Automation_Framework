@@ -1,14 +1,23 @@
-﻿using System.Text.Json.Serialization;
+﻿using Microsoft.Extensions.Configuration;
 
 namespace Epam.TestAutomation.TestData;
 
-public class TestInfo
+public static class TestInfo
 {
-    [JsonPropertyName("applicationUrl")] public string ApplicationUrl { get; set; }
+    public static readonly string ApplicationUrl = SetAppSettingsFromJson("applicationUrl")!;
 
-    [JsonPropertyName("screenshotPath")] public string ScreenshotPath { get; set; }
+    public static readonly string ScreenshotPath = SetAppSettingsFromJson("screenshotPath")!;
 
-    [JsonPropertyName("logsPath")] public string LogsPath { get; set; }
+    public static readonly string LogsPath = SetAppSettingsFromJson("logsPath")!;
 
-    [JsonPropertyName("webDriverTimeOut")] public int WebDriverTimeOut { get; set; }
+    public static readonly double WebDriverTimeOut =
+        double.Parse(SetAppSettingsFromJson("webDriverTimeOut")!);
+
+    private static string? SetAppSettingsFromJson(string keyName)
+    {
+        return new ConfigurationBuilder()
+            .AddJsonFile(Directory.GetCurrentDirectory() + "/appsettings.json")
+            .Build()
+            .GetSection(keyName).Value;
+    }
 }
