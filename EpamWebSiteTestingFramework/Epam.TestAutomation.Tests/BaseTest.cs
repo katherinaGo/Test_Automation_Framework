@@ -20,7 +20,7 @@ public abstract class BaseTest
     [SetUp]
     public void LoggerSetUp()
     {
-        MyLogger.Info("Test execution is started.");
+        MyLogger.Info($"Test '{TestContext.CurrentContext.Test.MethodName}' execution is started.");
     }
 
     [SetUp]
