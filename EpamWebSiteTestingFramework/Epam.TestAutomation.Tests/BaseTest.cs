@@ -37,6 +37,12 @@ public abstract class BaseTest
     }
 
     [TearDown]
+    public void DriverTearDown()
+    {
+        Browser.Driver.QuitBrowser();
+    }
+
+    [TearDown]
     public void LoggerTearDown()
     {
         if (TestContext.CurrentContext.Result.Outcome.Status == NUnit.Framework.Interfaces.TestStatus.Passed)
@@ -49,13 +55,12 @@ public abstract class BaseTest
             MyLogger.Info($"Test '{TestContext.CurrentContext.Test.MethodName}' is failed.");
             ScreenshotMaker.SaveScreenshot(TestContext.CurrentContext.Test.MethodName, UiTestSettings.ScreenshotPath);
         }
+        else
+        {
+            MyLogger.Error($"Something went wrong with test execution. {TestContext.CurrentContext.Result.StackTrace}");
+            ScreenshotMaker.SaveScreenshot(TestContext.CurrentContext.Test.MethodName, UiTestSettings.ScreenshotPath);
+        }
 
         MyLogger.Info($"'{TestContext.CurrentContext.Test.ClassName}' execution is finished.");
-    }
-
-    [TearDown]
-    public void DriverTearDown()
-    {
-        Browser.Driver.QuitBrowser();
     }
 }

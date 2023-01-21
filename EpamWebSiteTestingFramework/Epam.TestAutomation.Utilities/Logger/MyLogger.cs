@@ -13,7 +13,6 @@ public static class MyLogger
 
     public static void InitLogger(string loggerName, string pathToFolder)
     {
-        pathToFolder = Directory.GetCurrentDirectory() + "/" + pathToFolder; 
         Directory.CreateDirectory(pathToFolder);
 
         _logger = new LoggerConfiguration()
