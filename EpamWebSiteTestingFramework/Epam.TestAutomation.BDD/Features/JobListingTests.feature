@@ -8,4 +8,23 @@ I want to be able to search job by different keywords
         Given The application url
         And The job listings page is opened
         When Enter job name <keyword>
-        Then the result with searching word is displayed on the page
+        Then The result that contains the <keyword> is displayed on the page
+
+        Examples:
+          | keyword |
+          | qa      |
+          | ios     |
+          | android |
+          | .net    |
+
+    @smoke
+    Scenario Outline: Check that error message displayed when nothing was Found
+        Given The application url
+        And The job listings page is opened
+        When Enter job and location names <keyword1>, <keyword2>
+        Then The error message is displayed on the page that nothing was found
+
+        Examples:
+          | keyword1    | keyword2   |
+          | invalidInfo | Berlin     |
+          | Test        | Birmingham |
