@@ -9,6 +9,6 @@ public class HeaderTests : BaseTest
     {
         var isLogoDisplayed = MainPage.IsEpamLogoDisplayed();
         Assert.That(isLogoDisplayed, Is.True,
-            $"'Epam logo' is not displayed on the page ");
+            $"'Epam logo' is not displayed on the page '{MainPage.GetPageUrl()}'");
     }
 }
