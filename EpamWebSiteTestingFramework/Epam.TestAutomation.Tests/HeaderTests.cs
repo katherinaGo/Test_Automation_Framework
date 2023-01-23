@@ -3,6 +3,7 @@ using Epam.TestAutomation.Pages.PageObjects.Pages;
 namespace Epam.TestAutomation.Tests;
 
 [TestFixture]
+[Parallelizable(ParallelScope.All)]
 public class HeaderTests : BaseTest
 {
     [Test]
