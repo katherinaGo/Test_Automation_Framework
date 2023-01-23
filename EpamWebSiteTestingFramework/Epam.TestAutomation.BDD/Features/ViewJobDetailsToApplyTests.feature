@@ -5,7 +5,7 @@ I want to be able to search job by different keywords and be able to apply
 
     @smoke
     Scenario Outline: Check if 'Apply' form is displayed and possible to fill it in
-        Given The job listings page is opened
+        Given The job listings page is opened from the main page
         And Enter job name <keyword>
         When The result that contains the <keyword> is displayed on the page and by pressing button the job details page is opened
         Then Entering <name>, <surname>, <email> to apply the job is available

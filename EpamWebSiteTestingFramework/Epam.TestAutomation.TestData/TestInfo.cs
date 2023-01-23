@@ -13,6 +13,8 @@ public static class TestInfo
     public static readonly double WebDriverTimeOut =
         double.Parse(SetAppSettingsFromJson("webDriverTimeOut")!);
 
+    public static readonly string JobListingUrl = SetAppSettingsFromJson("jobListingUrl")!;
+
     private static string? SetAppSettingsFromJson(string keyName)
     {
         return new ConfigurationBuilder()

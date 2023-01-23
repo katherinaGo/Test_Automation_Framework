@@ -10,6 +10,7 @@ namespace Epam.TestAutomation.Pages.PageObjects.Pages;
 public class JobListingsPage : BasePage
 {
     private JobSearchResultPage _resultPage;
+    private JobDetailsPage _detailsPage;
     public TextInput KeywordInputField => new(By.XPath("//*[@id='new_form_job_search_1445745853_copy-keyword']"));
 
     public Dropdown LocationsDropdown =>
@@ -42,7 +43,8 @@ public class JobListingsPage : BasePage
 
     public JobListingsPage()
     {
-        _resultPage = new JobSearchResultPage();
+        _resultPage = new();
+        _detailsPage = new();
     }
 
     public override bool IsOpened()
@@ -53,6 +55,7 @@ public class JobListingsPage : BasePage
     public override void OpenUrl()
     {
         Browser.Driver.GotToWebPageUrl(UiTestSettings.JobListingUrl);
+        Waiter.WaitForPageLoading();
         Waiter.WaitForCondition(() => KeywordInputField.IsElementDisplayedOnPage());
     }
 

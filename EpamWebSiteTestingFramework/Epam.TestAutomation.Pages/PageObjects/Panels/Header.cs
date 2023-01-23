@@ -20,7 +20,9 @@ public class Header : Panel
 
     public Button CareerEpamWithoutBorders =>
         new Button(By.XPath("//*[@href='/careers/epam-without-borders'][text()='Relocate with EPAM']"));
+
     public Link Careers => new Link(By.XPath("//*[@class='top-navigation__item-link' and @href='/careers']"));
+
     public Button CareerHiringLocations =>
         new Button(By.XPath("//*[@href='/careers/locations'][text()='Hiring Locations']"));
 

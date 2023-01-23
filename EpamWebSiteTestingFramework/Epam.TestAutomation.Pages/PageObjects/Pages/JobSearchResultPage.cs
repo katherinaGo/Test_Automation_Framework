@@ -15,6 +15,10 @@ public class JobSearchResultPage : BasePage
     public Label ErrorMessageWhenNoJobsFound =>
         new Label(By.XPath("//*[@class='search-result__error-message' and @role ='alert']"));
 
+    public Button ViewAndApply => new(By.XPath("//*[@class='search-result__item-apply']"));
+
+    public Panel SearchPanel => new(By.Id("jobSearchFilterForm"));
+
     public override bool IsOpened()
     {
         return Browser.Driver.GetUrl().Equals(UiTestSettings.JobListingUrl);
@@ -34,5 +38,5 @@ public class JobSearchResultPage : BasePage
 
     public bool IsErrorMessageIsDisplayedIfNothingFound() => ErrorMessageWhenNoJobsFound.IsElementDisplayedOnPage();
 
-    public string GetActualErrorMessageFromPage() => ErrorMessageWhenNoJobsFound.GetTextFromAttribute();
+    public string GetActualErrorMessageFromPage() => ErrorMessageWhenNoJobsFound.GetTextFromAttribute("innerText");
 }

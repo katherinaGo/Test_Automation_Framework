@@ -63,10 +63,4 @@ public abstract class BaseTest
 
         MyLogger.Info($"'{TestContext.CurrentContext.Test.ClassName}' execution is finished.");
     }
-
-    [TearDown]
-    public void DriverTearDown()
-    {
-        Browser.Driver.QuitBrowser();
-    }
 }
