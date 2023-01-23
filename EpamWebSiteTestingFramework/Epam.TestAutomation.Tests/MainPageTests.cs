@@ -2,7 +2,6 @@ using Epam.TestAutomation.Pages.PageObjects.Pages;
 
 namespace Epam.TestAutomation.Tests;
 
-[TestFixture]
 public class MainPageTests : BaseTest
 {
     [Test]
