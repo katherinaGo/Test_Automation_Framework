@@ -4,8 +4,8 @@ using Epam.TestAutomation.TestData.CareersJobListingsTestInfo;
 
 namespace Epam.TestAutomation.Tests;
 
-[TestFixture]
-[Parallelizable(ParallelScope.All)]
+// [TestFixture]
+// [Parallelizable(ParallelScope.All)]
 public class JobListingTests : BaseTest
 {
     private MainPage _mainPage;

@@ -77,7 +77,7 @@ public class JobListingsPage : BasePage
     public JobSearchResultPage SearchJobSkillsByKeyWord(string searchWord)
     {
         SkillsSection.Click();
-        Thread.Sleep(1300); // can't find locator for skillsDropdown panel that it could work without Thread.Sleep 
+        Waiter.WaitForCondition(() => !SkillsDropdownPanel.GetTextFromAttribute("class").Contains("hidden"));
         SkillOption(searchWord).Click();
         FindButton.Click();
         Waiter.WaitForCondition(ChosenSkillFilter.IsElementDisplayedOnPage);
@@ -92,7 +92,7 @@ public class JobListingsPage : BasePage
         LocationInput.SendKeys(location);
         ChosenCityLine.Click();
         SkillsSection.Click();
-        Thread.Sleep(1300); // can't find locator for skillsDropdown panel that it could work without Thread.Sleep 
+        Waiter.WaitForCondition(() => !SkillsDropdownPanel.GetTextFromAttribute("class").Contains("hidden"));
         SkillOption(skill).Click();
         FindButton.Click();
         return new JobSearchResultPage();

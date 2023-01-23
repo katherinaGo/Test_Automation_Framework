@@ -20,7 +20,7 @@ public abstract class BaseElement
     }
 
     public string GetText() => Element.Text.Trim();
-    public string GetTextFromAttribute() => Element.GetAttribute("innerText");
+    public string GetTextFromAttribute(string value) => Element.GetAttribute(value);
     public void Click() => Element.Click();
     public void SendKeys(string text) => Element.SendKeys(text);
     public void ClearField() => Element.Clear();

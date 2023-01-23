@@ -34,5 +34,5 @@ public class JobSearchResultPage : BasePage
 
     public bool IsErrorMessageIsDisplayedIfNothingFound() => ErrorMessageWhenNoJobsFound.IsElementDisplayedOnPage();
 
-    public string GetActualErrorMessageFromPage() => ErrorMessageWhenNoJobsFound.GetTextFromAttribute();
+    public string GetActualErrorMessageFromPage() => ErrorMessageWhenNoJobsFound.GetTextFromAttribute("innerText");
 }
