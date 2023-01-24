@@ -7,34 +7,51 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Update="CareersJobListingsTestInfo\TestDataProfessionsName.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="projectsetup.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="CareersJobListingsTestInfo\TestDataAllFiltersToFindJob.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="CareersJobListingsTestInfo\TestDataLocations.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="CareersJobListingsTestInfo\TestDataSkills.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="CareersJobListingsTestInfo\TestDataToGetErrorMessage.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
+        <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0"/>
+        <PackageReference Include="NUnit" Version="3.13.3"/>
+        <PackageReference Include="System.Text.Json" Version="7.0.1"/>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+        <None Update="CareersJobListingsTestInfo\TestDataProfessionsName.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="projectsetup.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="CareersJobListingsTestInfo\TestDataAllFiltersToFindJob.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="CareersJobListingsTestInfo\TestDataLocations.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="CareersJobListingsTestInfo\TestDataSkills.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="CareersJobListingsTestInfo\TestDataToGetErrorMessage.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="CareersJobListingsTestInfo\TestDataToGetErrorModel.cs">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Compile>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.2"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Update="CareersJobListingsTestInfo\TestDataToGetErrorModel.cs">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Compile>
+    </ItemGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.2"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Update="CareersJobListingsTestInfo\TestDataToGetErrorModel.cs">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Compile>
     </ItemGroup>
 
 </Project>

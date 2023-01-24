@@ -17,7 +17,7 @@ public abstract class BaseTest
     [SetUp]
     public void LoggerSetUp()
     {
-        MyLogger.Info("Test execution is started.");
+        MyLogger.Info($"Test '{TestContext.CurrentContext.Test.MethodName}' execution is started.");
     }
 
     [SetUp]
@@ -25,6 +25,12 @@ public abstract class BaseTest
     {
         Browser.Driver.GotToWebPageUrl(UiTestSettings.ApplicationUrl);
         Waiter.WaitForPageLoading();
+    }
+
+    [SetUp]
+    public void PagesSetUp()
+    {
+        MainPage = new MainPage();
     }
 
     [TearDown]
@@ -38,6 +44,11 @@ public abstract class BaseTest
         if (TestContext.CurrentContext.Result.Outcome.Status == NUnit.Framework.Interfaces.TestStatus.Failed)
         {
             MyLogger.Info($"Test '{TestContext.CurrentContext.Test.MethodName}' is failed.");
+            ScreenshotMaker.SaveScreenshot(TestContext.CurrentContext.Test.MethodName, UiTestSettings.ScreenshotPath);
+        }
+        else
+        {
+            MyLogger.Error($"Something went wrong with test execution. {TestContext.CurrentContext.Result.StackTrace}");
             ScreenshotMaker.SaveScreenshot(TestContext.CurrentContext.Test.MethodName, UiTestSettings.ScreenshotPath);
         }
 

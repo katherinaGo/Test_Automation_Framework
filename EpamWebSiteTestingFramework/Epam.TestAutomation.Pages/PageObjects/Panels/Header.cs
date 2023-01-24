@@ -20,7 +20,13 @@ public class Header : Panel
 
     public Button CareerEpamWithoutBorders =>
         new Button(By.XPath("//*[@href='/careers/epam-without-borders'][text()='Relocate with EPAM']"));
+    public Link Careers => new Link(By.XPath("//*[@class='top-navigation__item-link' and @href='/careers']"));
+    public Button ContactUsButton => new Button(By.XPath("//*[@class='cta-button__text']"));
+    public Dropdown LanguageDropdown => new Dropdown(By.XPath("//*[@class='location-selector__button']"));
+    public Button SearchButton => new Button(By.XPath("//*[@class='header-search__button header__icon']"));
 
+    public ElementsList HeaderButtons =>
+        new ElementsList(By.XPath("//*[@class='top-navigation__item-link']"));
     public Button CareerHiringLocations =>
         new Button(By.XPath("//*[@href='/careers/locations'][text()='Hiring Locations']"));
 
@@ -29,14 +35,6 @@ public class Header : Panel
 
     public Button CareersBlog =>
         new Button(By.XPath("//*[@href='/careers/blog'][text()='Blog']"));
-
-    public Button ContactUsButton => new Button(By.XPath("//*[@class='cta-button__text']"));
-    public Dropdown LanguageDropdown => new Dropdown(By.XPath("//*[@class='location-selector__button']"));
-    public Button SearchButton => new Button(By.XPath("//*[@class='header-search__button header__icon']"));
-
-    public ElementsList HeaderButtons =>
-        new(By.XPath("//*[@class='top-navigation__item-link']"));
-
     public Header(By locator) : base(locator)
     {
     }
