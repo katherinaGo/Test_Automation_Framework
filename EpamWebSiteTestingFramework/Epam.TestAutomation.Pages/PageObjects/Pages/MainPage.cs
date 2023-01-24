@@ -35,6 +35,7 @@ public class MainPage : BasePage
 
     public JobListingsPage OpenJoinOurTeamPage()
     {
+        Waiter.WaitForCondition(EpamHeader.CareersLink.IsElementEnabled);
         EpamHeader.CareersLink.HoverOnElement();
         Waiter.WaitForCondition(EpamHeader.CareersBlog.IsElementDisplayedOnPage);
         EpamHeader.CareerJoinOurTeam.Click();
