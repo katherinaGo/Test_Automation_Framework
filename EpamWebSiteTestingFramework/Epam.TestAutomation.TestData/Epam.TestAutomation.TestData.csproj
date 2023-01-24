@@ -8,15 +8,33 @@
 
     <ItemGroup>
       <None Update="CareersJobListingsTestInfo\TestDataProfessionsName.json">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
       <None Update="projectsetup.json">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="CareersJobListingsTestInfo\TestDataAllFiltersToFindJob.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="CareersJobListingsTestInfo\TestDataLocations.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="CareersJobListingsTestInfo\TestDataSkills.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="CareersJobListingsTestInfo\TestDataToGetErrorMessage.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
     </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="CareersJobListingsTestInfo\TestDataToGetErrorModel.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Compile>
     </ItemGroup>
 
 </Project>

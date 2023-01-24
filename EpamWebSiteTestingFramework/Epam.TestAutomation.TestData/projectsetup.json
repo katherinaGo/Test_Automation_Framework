@@ -1,8 +1,7 @@
 {
   "applicationUrl": "https://www.epam.com/",
   "jobListingUrl": "https://www.epam.com/careers/job-listings",
-  "screenshotPath": "/Users/kate/RiderProjects/Test_Automation_Framework/EpamWebSiteTestingFramework/Epam.TestAutomation.Tests/Screenshots",
-  "logsPath": "/Users/kate/RiderProjects/Test_Automation_Framework/EpamWebSiteTestingFramework/Epam.TestAutomation.Utilities/Logs",
-  "webDriverTimeOut": 60,
-  "defaultTimeOut": 80
+  "screenshotPath": "Screenshots",
+  "logsPath": "Logs",
+  "webDriverTimeOut": 60
 }
