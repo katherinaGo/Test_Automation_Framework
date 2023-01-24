@@ -27,10 +27,10 @@ public abstract class BaseTest
         Waiter.WaitForPageLoading();
     }
 
-    [SetUp]
-    public void PagesSetUp()
+    [TearDown]
+    public void DriverTearDown()
     {
-        MainPage = new MainPage();
+        Browser.Driver.QuitBrowser();
     }
 
     [TearDown]
@@ -53,11 +53,5 @@ public abstract class BaseTest
         }
 
         MyLogger.Info($"'{TestContext.CurrentContext.Test.ClassName}' execution is finished.");
-    }
-
-    [TearDown]
-    public void DriverTearDown()
-    {
-        Browser.Driver.QuitBrowser();
     }
 }

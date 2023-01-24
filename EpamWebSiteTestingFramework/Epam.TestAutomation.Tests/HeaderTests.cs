@@ -4,8 +4,7 @@ namespace Epam.TestAutomation.Tests;
 
 [TestFixture]
 [Parallelizable(ParallelScope.All)]
-public class
-    HeaderTests : BaseTest
+public class HeaderTests : BaseTest
 {
     private MainPage _mainPage;
 

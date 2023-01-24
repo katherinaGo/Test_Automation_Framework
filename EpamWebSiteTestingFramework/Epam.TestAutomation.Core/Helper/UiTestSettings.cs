@@ -11,7 +11,7 @@ public static class UiTestSettings
     public static TimeSpan WebDriverTimeOut => TimeSpan.FromSeconds(TestInfo.WebDriverTimeOut);
     public static BrowserType GetCurrentBrowser => Browser;
     public static string ApplicationUrl => TestInfo.ApplicationUrl;
-    public static string JobListingUrl => ProjectSetUpInfo.JobListingUrl;
+    public static string JobListingUrl => TestInfo.JobListingUrl;
 
     private static BrowserType Browser => EnumParser.GetEnumValueByDescription<BrowserType>("DefaultBrowser");
 }
