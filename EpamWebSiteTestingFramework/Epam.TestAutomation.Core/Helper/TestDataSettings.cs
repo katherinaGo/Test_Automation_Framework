@@ -20,18 +20,18 @@ public static class TestDataSettings
     public static List<TestDataToGetErrorModel> TwoFiltersData =>
         JsonParser.Deserialize<List<TestDataToGetErrorModel>>(PathToTwoFiltersToGetErrorJson);
 
-    private const string PathToSearchProfessionsJson =
-        "/Users/kate/RiderProjects/Test_Automation_Framework/EpamWebSiteTestingFramework/Epam.TestAutomation.TestData/CareersJobListingsTestInfo/TestDataProfessionsName.json";
+    private static readonly string PathToSearchProfessionsJson =
+        Directory.GetCurrentDirectory() + "/TestData/TestDataProfessionsName.json";
 
-    private const string PathToSearchLocationsJson =
-        "/Users/kate/RiderProjects/Test_Automation_Framework/EpamWebSiteTestingFramework/Epam.TestAutomation.TestData/CareersJobListingsTestInfo/TestDataLocations.json";
+    private static readonly string PathToSearchLocationsJson =
+        Directory.GetCurrentDirectory() + "/TestData/TestDataLocations.json";
 
-    private const string PathToSearchSkillsJson =
-        "/Users/kate/RiderProjects/Test_Automation_Framework/EpamWebSiteTestingFramework/Epam.TestAutomation.TestData/CareersJobListingsTestInfo/TestDataSkills.json";
+    private static readonly string PathToSearchSkillsJson =
+        Directory.GetCurrentDirectory() + "/TestData/TestDataSkills.json";
 
-    private const string PathToAllFiltersToFindJobJson =
-        "/Users/kate/RiderProjects/Test_Automation_Framework/EpamWebSiteTestingFramework/Epam.TestAutomation.TestData/CareersJobListingsTestInfo/TestDataAllFiltersToFindJob.json";
+    private static readonly string PathToAllFiltersToFindJobJson =
+        Directory.GetCurrentDirectory() + "/TestData/TestDataAllFiltersToFindJob.json";
 
-    private const string PathToTwoFiltersToGetErrorJson =
-        "/Users/kate/RiderProjects/Test_Automation_Framework/EpamWebSiteTestingFramework/Epam.TestAutomation.TestData/CareersJobListingsTestInfo/TestDataToGetErrorMessage.json";
+    private static readonly string PathToTwoFiltersToGetErrorJson =
+        Directory.GetCurrentDirectory() + "/TestData/TestDataToGetErrorMessage.json";
 }
