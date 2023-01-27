@@ -1,7 +1,7 @@
 using Epam.TestAutomation.TestData.CareersJobListingsTestInfo;
 using Epam.TestAutomation.Utilities.JsonParser;
 
-namespace Epam.TestAutomation.Core.Helper;
+namespace Epam.TestAutomation.TestData;
 
 public static class TestDataSettings
 {

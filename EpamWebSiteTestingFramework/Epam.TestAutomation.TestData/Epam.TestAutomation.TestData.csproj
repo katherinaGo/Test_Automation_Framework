@@ -7,10 +7,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
-        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
-        <PackageReference Include="NUnit" Version="3.13.3" />
-        <PackageReference Include="System.Text.Json" Version="7.0.1" />
+        <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0"/>
+        <PackageReference Include="NUnit" Version="3.13.3"/>
+        <PackageReference Include="System.Text.Json" Version="7.0.1"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -20,7 +20,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.2"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -28,15 +28,15 @@
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Compile>
     </ItemGroup>
-    
-    <ItemGroup>
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
-    </ItemGroup>
 
     <ItemGroup>
         <Compile Update="CareersJobListingsTestInfo\TestDataToGetErrorModel.cs">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Epam.TestAutomation.Utilities\Epam.TestAutomation.Utilities.csproj"/>
     </ItemGroup>
 
 </Project>

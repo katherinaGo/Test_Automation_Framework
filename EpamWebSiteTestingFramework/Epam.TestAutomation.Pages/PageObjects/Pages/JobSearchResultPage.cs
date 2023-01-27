@@ -22,7 +22,7 @@ public class JobSearchResultPage : BasePage
 
     public override void OpenUrl()
     {
-        throw new NotImplementedException();
+        Browser.Driver.GetUrl().Equals(UiTestSettings.JobListingUrl);
     }
 
     public bool IsFoundResultHasSearchWord(string searchWord)

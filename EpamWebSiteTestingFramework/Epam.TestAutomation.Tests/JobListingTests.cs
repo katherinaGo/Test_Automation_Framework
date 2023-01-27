@@ -1,5 +1,5 @@
-using Epam.TestAutomation.Core.Helper;
 using Epam.TestAutomation.Pages.PageObjects.Pages;
+using Epam.TestAutomation.TestData;
 using Epam.TestAutomation.TestData.CareersJobListingsTestInfo;
 
 namespace Epam.TestAutomation.Tests;
