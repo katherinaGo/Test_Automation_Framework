@@ -10,7 +10,6 @@ namespace Epam.TestAutomation.Pages.PageObjects.Pages;
 
 public class MainPage : BasePage
 {
-    private JobListingsPage _jobListingsPage;
     public Header EpamHeader => new Header(By.XPath("//*[@class='header-ui']"));
 
     public Label EngineeringTheFutureBanner => new Label(
@@ -18,28 +17,21 @@ public class MainPage : BasePage
 
     public Button SliderButton => new Button(By.XPath("//*[@class='slider__navigation']"));
 
-    public MainPage()
-    {
-        _jobListingsPage = new JobListingsPage();
-    }
-
     public override bool IsOpened()
     {
         return Browser.Driver.GetUrl().Equals(UiTestSettings.ApplicationUrl);
     }
 
-    public override void OpenUrl()
+    public void OpenUrl()
     {
         Browser.Driver.GotToWebPageUrl(UiTestSettings.ApplicationUrl);
     }
 
-    public JobListingsPage OpenJoinOurTeamPage()
+    public void OpenJoinOurTeamPage()
     {
         EpamHeader.CareersLink.HoverOnElement();
         Waiter.WaitForCondition(EpamHeader.CareersBlog.IsElementDisplayedOnPage);
         EpamHeader.CareerJoinOurTeam.Click();
-        Waiter.WaitForCondition(_jobListingsPage.FiltersPanel.IsElementDisplayedOnPage);
-        return new JobListingsPage();
     }
 
     public bool IsEngineeringTheFutureBannerDisplayed() => EngineeringTheFutureBanner.IsElementDisplayedOnPage();

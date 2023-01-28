@@ -50,12 +50,13 @@ public abstract class BaseTest
             MyLogger.Info($"Test '{TestContext.CurrentContext.Test.MethodName}' is passed.");
         }
 
-        if (TestContext.CurrentContext.Result.Outcome.Status == NUnit.Framework.Interfaces.TestStatus.Failed)
+        else if (TestContext.CurrentContext.Result.Outcome.Status == NUnit.Framework.Interfaces.TestStatus.Failed)
         {
             MyLogger.Info($"Test '{TestContext.CurrentContext.Test.MethodName}' is failed.");
             ScreenshotMaker.SaveScreenshot(TestContext.CurrentContext.Test.MethodName, UiTestSettings.ScreenshotPath);
         }
         else
+
         {
             MyLogger.Error($"Something went wrong with test execution. {TestContext.CurrentContext.Result.StackTrace}");
             ScreenshotMaker.SaveScreenshot(TestContext.CurrentContext.Test.MethodName, UiTestSettings.ScreenshotPath);

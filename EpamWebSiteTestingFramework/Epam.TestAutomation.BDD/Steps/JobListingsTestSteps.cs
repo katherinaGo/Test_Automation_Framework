@@ -1,3 +1,4 @@
+using Epam.TestAutomation.Core.Utils;
 using Epam.TestAutomation.Pages.PageObjects.Pages;
 using TechTalk.SpecFlow;
 
@@ -9,35 +10,40 @@ public class JobListingsTestSteps
     private JobListingsPage _jobListingsPage = new();
     private JobSearchResultPage _resultPage = new();
 
-    [Given(@"The job listings page is opened from the main page")]
+    [Given(@"The job listings page is opened")]
     public void GivenTheJobListingsPageIsOpened()
     {
         _jobListingsPage.OpenUrl();
     }
 
+    [Given(@"Enter job name (.*)")]
     [When(@"Enter job name (.*)")]
-    public void WhenEnterJobName(string keyword)
+    public void EnterJobName(string keyword)
     {
         _jobListingsPage.SearchJobsByKeyword(keyword);
+        Waiter.WaitForCondition(_resultPage.SearchResultHeadingTitle.IsElementDisplayedOnPage);
     }
 
     [Then(@"The result that contains the (.*) is displayed on the page")]
-    public void ThenTheResultThatContainsTheQaIsDisplayedOnThePage(string keyword)
+    [When(@"The result that contains the (.*) is displayed on the page")]
+    public void ThenTheResultThatContainsTheIsDisplayedOnThePage(string keyword)
     {
         var isResultFound = _resultPage.IsFoundResultHasSearchWord(keyword);
-        Assert.That(isResultFound, Is.True,
-            $"Found result doesn't contain search word '{keyword}'.");
+        if (isResultFound == false)
+        {
+            Assert.Fail($"Found result doesn't contain search word '{keyword}'.");
+        }
     }
 
-    [When(@"Enter job and location names (.*), (.*)")]
-    public void WhenEnterJobAndLocationNames(string job, string location)
+    [When(@"Enter job and location names (.*), (.*) in the search panel")]
+    public void WhenEnterJobAndLocationNamesInTheSearchPanel(string job, string location)
     {
         _jobListingsPage.OpenUrl();
         _jobListingsPage.FillFiltersWithSearchJobDataToGetErrorMessage(job, location);
     }
 
-    [Then(@"The error message is displayed on the page that nothing was found")]
-    public void ThenTheErrorMessageIsDisplayedOnThePageThatNothingWasFound()
+    [Then(@"The error message is displayed on the result page that nothing was found")]
+    private void ThenTheErrorMessageIsDisplayedOnTheResultPageThatNothingWasFound()
     {
         var isErrorMessageDisplayed = _resultPage.IsErrorMessageIsDisplayedIfNothingFound();
         var expectedErrorMessage = "Sorry, your search returned no results. Please try another combination.";

@@ -6,37 +6,21 @@ namespace Epam.TestAutomation.BDD.Steps;
 [Binding]
 public class JobApplyToWorkTestSteps
 {
-    private JobListingsPage _jobListingPage = new();
-    private JobSearchResultPage _resultPage = new();
     private JobDetailsPage _detailsPage = new();
+    private JobSearchResultPage _resultPage = new();
 
-    [Given(@"Enter job name (.*)")]
-    public void GivenEnterJobName(string keyword)
+    [When(@"By pressing 'ViewAndApply' button the job details page is opened")]
+    public void WhenByPressingButtonTheJobDetailsPageIsOpened()
     {
-        _jobListingPage.SearchJobsByKeyword(keyword);
+        _resultPage.ViewAndApply.Click();
+        _detailsPage.OpenDetailsOfFirstJob();
     }
 
-    [When(
-        @"The result that contains the (.*) is displayed on the page and by pressing button the job details page is opened")]
-    public void WhenTheResultThatContainsTheIsDisplayedOnThePageAndByPressingButtonJobDetailsIsOpened(string keyword)
+    [Then(@"Entering (.*) to apply the job is available")]
+    public void ThenEnteringDataToApplyTheJobIsAvailable(string testValue)
     {
-        var isResultFound = _resultPage.IsFoundResultHasSearchWord(keyword);
-        if (isResultFound)
-        {
-            _detailsPage.ClickViewAndApplyOnFirstJobToOpenDetails();
-        }
-        else
-        {
-            Assert.Fail("Nothing was found, impossible to open job details page.");
-        }
-    }
-
-    [Then(@"Entering (.*), (.*),(.*) to apply the job is available")]
-    public void ThenEnteringDataToApplyTheJobIsAvailable(string name, string lastName, string email)
-    {
-        _detailsPage.FillUpTheMandatoryFields(name, lastName, email);
-        var areFieldsContainInputData =
-            _detailsPage.CheckIfMandatoryFieldsAreFilled(name, lastName, email);
+        _detailsPage.FillUpTheMandatoryFields(testValue);
+        var areFieldsContainInputData = _detailsPage.CheckIfMandatoryFieldsAreFilled(testValue);
         Assert.That(areFieldsContainInputData, Is.True, "Mandatory fields don't contains needed info.");
     }
 }

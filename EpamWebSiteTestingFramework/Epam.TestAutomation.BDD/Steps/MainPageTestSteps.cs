@@ -11,8 +11,8 @@ public class MainPageTestSteps
 {
     private MainPage _mainPage = new();
 
-    [Given(@"The application url")]
-    public void GivenTheMain()
+    [Given(@"The main page is opened")]
+    public void GivenTheMainPageOpened()
     {
         Browser.Driver.GotToWebPageUrl(UiTestSettings.ApplicationUrl);
     }
