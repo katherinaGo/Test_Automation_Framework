@@ -46,10 +46,11 @@ public static class DriverFactory
     private static IWebDriver GetChromeConfiguredBrowser()
     {
         var chromeOptions = new ChromeOptions();
-        chromeOptions.AddArgument("--start-maximized");
+        // chromeOptions.AddArgument("--start-maximized");
+        chromeOptions.AddArgument("window-size=1512,982");
         var service = ChromeDriverService.CreateDefaultService();
         var chromeDriver = new ChromeDriver(service, chromeOptions, TimeSpan.FromMinutes(2));
-        chromeDriver.Manage().Window.Size = new Size(1512, 982);
+        // chromeDriver.Manage().Window.Size = new Size(1512, 982);
         return chromeDriver;
     }
 
