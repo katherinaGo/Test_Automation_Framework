@@ -39,6 +39,29 @@ public class BaseController
             : (response, GetDeserializedView<T>(response));
     }
 
+    protected (RestResponse Response, T ResponseModel) Update<T, TPayload>(string resource, TPayload? payload = null)
+        where TPayload : class
+    {
+        var request = new RestRequest(resource, Method.Put);
+        if (payload != null)
+            request.AddJsonBody(payload);
+
+        var response = _restClient.ExecutePost(request);
+        return (typeof(T) == typeof(RestResponse))
+            ? (response, default)
+            : (response, GetDeserializedView<T>(response));
+    }
+
+    protected (RestResponse Response, T ResponseModel) Delete<T>(string resource)
+    {
+        var request = new RestRequest(resource, Method.Delete);
+        var response = _restClient.Delete(request);
+
+        return typeof(T) == typeof(RestResponse)
+            ? (response, default)
+            : (response, GetDeserializedView<T>(response));
+    }
+
     private T? GetDeserializedView<T>(RestResponse response)
     {
         return JsonConvert.DeserializeObject<T>(response.Content);

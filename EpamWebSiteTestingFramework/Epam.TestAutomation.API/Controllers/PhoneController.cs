@@ -13,10 +13,9 @@ public class PhoneController : BaseController
     {
     }
 
-    private const string AllObjectsPhoneResource = "/objects";
+    private const string ObjectsPhoneResource = "/objects";
     private const string SingleObjectPhoneResource = "/objects/{0}";
     private const string SingleObjectPhoneResourceWithParam = "/objects?id={0}";
-    private const string AddObjectPhoneResource = "/objects";
 
     /// <summary>
     /// Request that receive all list of phones
@@ -25,7 +24,7 @@ public class PhoneController : BaseController
     /// <returns>response typeof <see cref="RestResponse"/> and <see cref="Phone"/></returns>
     public (RestResponse Response, T Phones) GetPhones<T>()
     {
-        return Get<T>(AllObjectsPhoneResource);
+        return Get<T>(ObjectsPhoneResource);
     }
 
     /// <summary>
@@ -55,6 +54,26 @@ public class PhoneController : BaseController
     /// <returns>response typeof <see cref="RestResponse"/> and <see cref="Phone"/></returns>
     public (RestResponse Response, T Phone) AddPhone<T>(PhoneModel model)
     {
-        return Post<T, PhoneModel>(AddObjectPhoneResource, model);
+        return Post<T, PhoneModel>(ObjectsPhoneResource, model);
+    }
+
+    /// <summary>
+    /// Request that delete one phone by ID
+    /// </summary>
+    /// <typeparam name="T"><see cref="Phone"/></typeparam>
+    /// <returns>response typeof <see cref="RestResponse"/> and <see cref="Phone"/></returns>
+    public (RestResponse Response, T Phone) DeletePhone<T>(string phoneId)
+    {
+        return Delete<T>(string.Format(SingleObjectPhoneResource, phoneId));
+    }
+
+    /// <summary>
+    /// Request that update one phone by ID
+    /// </summary>
+    /// <typeparam name="T"><see cref="Phone"/></typeparam>
+    /// <returns>response typeof <see cref="RestResponse"/> and <see cref="Phone"/></returns>
+    public (RestResponse Response, T Phone) UpdateExistingPhone<T>(string phoneId, PhoneModel model)
+    {
+        return Update<T, PhoneModel>(string.Format(SingleObjectPhoneResource, phoneId), model);
     }
 }
