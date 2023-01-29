@@ -10,18 +10,12 @@ namespace Epam.TestAutomation.Pages.PageObjects.Pages;
 
 public class MainPage : BasePage
 {
-    private JobListingsPage _jobListingsPage;
-    public Header EpamHeader => new Header(By.XPath("//*[@class='header-ui']"));
+    public Header EpamHeader => new(By.XPath("//*[@class='header-ui']"));
 
-    public Label EngineeringTheFutureBanner => new Label(
-        By.XPath("//*[contains(@class, 'background-video-ui background-video--narrow')]"));
+    public Label EngineeringTheFutureBanner =>
+        new(By.XPath("//*[contains(@class, 'background-video-ui background-video--narrow')]"));
 
-    public Button SliderButton => new Button(By.XPath("//*[@class='slider__navigation']"));
-
-    public MainPage()
-    {
-        _jobListingsPage = new JobListingsPage();
-    }
+    public Button SliderButton => new(By.XPath("//*[@class='slider__navigation']"));
 
     public override bool IsOpened()
     {
@@ -33,14 +27,12 @@ public class MainPage : BasePage
         Browser.Driver.GotToWebPageUrl(UiTestSettings.ApplicationUrl);
     }
 
-    public JobListingsPage OpenJoinOurTeamPage()
+    public void OpenJoinOurTeamPage()
     {
         Waiter.WaitForCondition(EpamHeader.CareersLink.IsElementEnabled);
         EpamHeader.CareersLink.HoverOnElement();
         Waiter.WaitForCondition(EpamHeader.CareersBlog.IsElementDisplayedOnPage);
         EpamHeader.CareerJoinOurTeam.Click();
-        Waiter.WaitForCondition(_jobListingsPage.FiltersPanel.IsElementDisplayedOnPage);
-        return new JobListingsPage();
     }
 
     public bool IsEngineeringTheFutureBannerDisplayed() => EngineeringTheFutureBanner.IsElementDisplayedOnPage();

@@ -8,19 +8,22 @@ public class JobListingTests : BaseTest
 {
     private MainPage _mainPage;
     private JobSearchResultPage _resultPage;
+    private JobListingsPage _listingPage;
 
     [SetUp]
     public void SetUpPages()
     {
-        _mainPage = new MainPage();
-        _resultPage = new JobSearchResultPage();
+        _mainPage = new();
+        _resultPage = new();
+        _listingPage = new();
     }
 
     [Test]
     [TestCaseSource(nameof(GetProfessionsNamesTestData))]
     public void CheckSearchResultsRelatedToProfessionsTest(ProfessionsName searchWord)
     {
-        _mainPage.OpenJoinOurTeamPage().SearchJobsByKeyword(searchWord.SearchJobKeyWord);
+        _mainPage.OpenJoinOurTeamPage();
+        _listingPage.SearchJobsByKeyword(searchWord.SearchJobKeyWord);
         var isResultFound = _resultPage.IsFoundResultHasSearchWord(searchWord.SearchJobKeyWord);
         Assert.That(isResultFound, Is.True,
             $"Found result doesn't contain search word '{searchWord.SearchJobKeyWord}'.");
@@ -30,7 +33,8 @@ public class JobListingTests : BaseTest
     [TestCaseSource(nameof(GetLocationsTestData))]
     public void CheckSearchResultsRelatedToLocationsTest(LocationsNameModel searchWord)
     {
-        _mainPage.OpenJoinOurTeamPage().SearchJobLocationsByKeyWord(searchWord.SearchLocationKeyWord);
+        _mainPage.OpenJoinOurTeamPage();
+        _listingPage.SearchJobLocationsByKeyWord(searchWord.SearchLocationKeyWord);
         var isResultFound = _resultPage.IsFoundResultHasSearchWord(searchWord.SearchLocationKeyWord);
         Assert.That(isResultFound, Is.True,
             $"Found result doesn't contain search word '{searchWord.SearchLocationKeyWord}'.");
@@ -40,7 +44,8 @@ public class JobListingTests : BaseTest
     [TestCaseSource(nameof(GetSkillsTestData))]
     public void CheckSearchResultsRelatedToSkillsTest(SkillsNameModel searchWord)
     {
-        _mainPage.OpenJoinOurTeamPage().SearchJobSkillsByKeyWord(searchWord.SearchSkillsKeyWord);
+        _mainPage.OpenJoinOurTeamPage();
+        _listingPage.SearchJobSkillsByKeyWord(searchWord.SearchSkillsKeyWord);
         var isResultFound = _resultPage.IsFoundResultHasSearchWord(searchWord.SearchSkillsKeyWord);
         Assert.That(isResultFound, Is.True,
             $"Found result doesn't contain search word '{searchWord.SearchSkillsKeyWord}'.");
@@ -50,8 +55,8 @@ public class JobListingTests : BaseTest
     [TestCaseSource(nameof(GetAllJobsFiltersTestData))]
     public void CheckSearchResultsRelatedToAllFiltersTest(JobSearchByAllFiltersModel model)
     {
-        _mainPage.OpenJoinOurTeamPage()
-            .FillFiltersWithSearchJobData(model.ProffessionName, model.SkillName, model.LocationName);
+        _mainPage.OpenJoinOurTeamPage();
+        _listingPage.FillFiltersWithSearchJobData(model.ProffessionName, model.SkillName, model.LocationName);
         var isJobFound = _resultPage.IsFoundResultHasSearchWord(model.ProffessionName);
         var isSkillFound = _resultPage.IsFoundResultHasSearchWord(model.SkillName);
         var isLocationFound = _resultPage.IsFoundResultHasSearchWord(model.LocationName);
@@ -70,9 +75,9 @@ public class JobListingTests : BaseTest
     [TestCaseSource(nameof(GetTestDataJobAndLocation))]
     public void CheckErrorMessageDisplayedWhenNothingFoundTest(TestDataToGetErrorModel model)
     {
-        var isErrorMessageDisplayed = _mainPage.OpenJoinOurTeamPage()
-            .FillFiltersWithSearchJobDataToGetErrorMessage(model.SKillName, model.LocationName)
-            .IsErrorMessageIsDisplayedIfNothingFound();
+        _mainPage.OpenJoinOurTeamPage();
+        _listingPage.FillFiltersWithSearchJobData(model.SkillName, model.LocationName, "");
+        var isErrorMessageDisplayed = _resultPage.IsErrorMessageIsDisplayedIfNothingFound();
         var expectedErrorMessage = "Sorry, your search returned no results. Please try another combination.";
         var actualErrorMessage = _resultPage.GetActualErrorMessageFromPage();
         Assert.Multiple(() =>
