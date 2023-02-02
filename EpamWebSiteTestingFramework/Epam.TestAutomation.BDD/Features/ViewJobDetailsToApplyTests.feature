@@ -7,11 +7,11 @@ To be able to search job by different keywords
     Scenario Outline: Check if 'Apply' form is displayed and possible to edit fields
         Given The job listings page is opened
         And Enter job name <keyword>
-        When The result that contains the <keyword> is displayed on the page
+        When The result that contains the <keyword> is displayed on the result page
         And By pressing 'ViewAndApply' button the job details page is opened
         Then Entering <testValue> to apply the job is available
 
         Examples:
           | keyword | testValue |
           | xamarin | test      |
-    #          | devops  | hello     |
+          | devops  | hello     |

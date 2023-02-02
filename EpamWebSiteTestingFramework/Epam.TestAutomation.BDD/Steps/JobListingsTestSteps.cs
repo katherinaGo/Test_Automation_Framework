@@ -24,9 +24,9 @@ public class JobListingsTestSteps
         Waiter.WaitForCondition(_resultPage.SearchResultHeadingTitle.IsElementDisplayedOnPage);
     }
 
-    [Then(@"The result that contains the (.*) is displayed on the page")]
-    [When(@"The result that contains the (.*) is displayed on the page")]
-    public void ThenTheResultThatContainsTheIsDisplayedOnThePage(string keyword)
+    [Then(@"The result that contains the (.*) is displayed on the result page")]
+    [When(@"The result that contains the (.*) is displayed on the result page")]
+    public void ThenTheResultThatContainsTheIsDisplayedOnTheResultPage(string keyword)
     {
         var isResultFound = _resultPage.IsFoundResultHasSearchWord(keyword);
         if (isResultFound == false)

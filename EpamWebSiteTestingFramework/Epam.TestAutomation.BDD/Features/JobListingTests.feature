@@ -8,7 +8,7 @@ To be able to search jobs by keywords
     Scenario Outline: Check search results related To Professions
         Given The job listings page is opened
         When Enter job name <keyword>
-        Then The result that contains the <keyword> is displayed on the page
+        Then The result that contains the <keyword> is displayed on the result page
 
         Examples:
           | keyword |

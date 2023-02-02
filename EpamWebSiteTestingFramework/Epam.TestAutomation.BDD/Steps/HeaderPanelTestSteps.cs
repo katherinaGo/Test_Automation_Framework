@@ -8,8 +8,8 @@ public class HeaderPanelTestSteps
 {
     private MainPage _mainPage = new();
 
-    [Then(@"The Epam Logo is displayed on the page")]
-    public void ThenTheEpamLogoIsDisplayedOnThePage()
+    [Then(@"The Epam Logo is displayed on the main page")]
+    public void ThenTheEpamLogoIsDisplayedOnTheMainPage()
     {
         var isLogoDisplayed = _mainPage.IsEpamLogoDisplayed();
         Assert.That(isLogoDisplayed, Is.True,

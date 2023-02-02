@@ -13,8 +13,8 @@ public class JobSearchResultPage : BasePage
 
     public Label SearchResultHeadingTitle => new(By.XPath("//*[@class='search-result__heading']"));
 
-    public Label ErrorMessageWhenNoJobsFound =>
-        new(By.XPath("//*[@class='search-result__error-message' and contains(@role, 'alert')]"));
+    public Label ErrorMessageWhenNoJobsFound => new(By
+        .XPath("//*[@class='search-result__error-message' and contains(@role, 'alert')]"));
 
     public Button ViewAndApply => new(By.XPath("//*[@class='search-result__item-apply']"));
 

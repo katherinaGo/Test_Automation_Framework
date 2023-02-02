@@ -18,21 +18,21 @@ public class JobListingsPage : BasePage
 
     public Button FindButton => new(By.XPath("//*[@type='submit']"));
 
-    public Button SelectedLocationChosen(string cityName) =>
-        new Button(By.XPath($"//*[@class='select2-selection__rendered'][contains(text(), '{cityName}')]"));
+    public Button SelectedLocationChosen(string cityName) => new Button(By
+        .XPath($"//*[@class='select2-selection__rendered'][contains(text(), '{cityName}')]"));
 
-    public Button ChosenCityLine =>
-        new(By.XPath(" //*[contains(@class, 'select2-results__option')][contains(@role, option)]"));
+    public Button ChosenCityLine => new(By
+        .XPath(" //*[contains(@class, 'select2-results__option')][contains(@role, option)]"));
 
     public TextInput LocationInput => new(By.XPath("//*[@class='select2-search__field'][@type='text']"));
 
     public Label SkillsSection => new(By.XPath("//*[@class='selected-params ']/*[@class='default-label']"));
 
-    public Dropdown SkillsDropdownPanel =>
-        new(By.XPath("//*[@class='multi-select-dropdown' and contains(@aria-hidden, 'false')]"));
+    public Dropdown SkillsDropdownPanel => new(By
+        .XPath("//*[@class='multi-select-dropdown' and contains(@aria-hidden, 'false')]"));
 
-    public Checkbox SkillOption(string skill) =>
-        new(By.XPath($"//*[@class='checkbox-custom-label'][contains(text(), '{skill}')]"));
+    public Checkbox SkillOption(string skill) => new(By
+        .XPath($"//*[@class='checkbox-custom-label'][contains(text(), '{skill}')]"));
 
     public Label ChosenSkillFilter => new(By.XPath("//*[@class='filter-tag']"));
 
