@@ -17,7 +17,7 @@ public static class Waiter
             !Browser.Driver.FindElement(By.XPath("//div[contains(@class,'grid__spinner')]")).Displayed);
     }
 
-    public static void WaitForPageLoaded()
+    public static void WaitForPageLoadingJS()
     {
         Browser.Driver.Waiters()
             .Until(_driver => ((IJavaScriptExecutor)_driver).ExecuteScript("return document.readyState"))

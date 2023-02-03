@@ -44,7 +44,7 @@ public class MainTrainingPage : BasePage
         ChangeLanguageDropdownButton.Click();
         Waiter.WaitForCondition(LanguageDropdown.IsElementDisplayedOnPage);
         Language(chosenLanguage).Click();
-        Waiter.WaitForPageLoaded();
+        Waiter.WaitForCondition(() => HeroBanner.IsElementDisplayedOnPage());
     }
 
     public bool IsNeededLanguageChosen(string lang)

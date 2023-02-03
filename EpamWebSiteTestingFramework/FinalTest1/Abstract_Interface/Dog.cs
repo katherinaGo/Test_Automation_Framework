@@ -2,8 +2,15 @@ namespace FinalTest1.Abstract_Interface;
 
 public class Dog : Animal, IWalkableAnimal
 {
+    public Dog(string name, int weight) : base(name, weight)
+    {
+        Name = name;
+        Weight = weight;
+    }
+
     public override string Name { get; set; }
     public override int Weight { get; set; }
+
 
     public override void MakeSound()
     {
@@ -15,11 +22,6 @@ public class Dog : Animal, IWalkableAnimal
         Console.WriteLine("I'm sleeping...");
     }
 
-    public Dog(string name, int weight) : base(name, weight)
-    {
-        Name = name;
-        Weight = weight;
-    }
 
     public void Walk()
     {
