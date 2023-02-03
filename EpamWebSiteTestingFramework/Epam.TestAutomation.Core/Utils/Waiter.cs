@@ -16,4 +16,11 @@ public static class Waiter
         Browser.Driver.Waiters().Until(x =>
             !Browser.Driver.FindElement(By.XPath("//div[contains(@class,'grid__spinner')]")).Displayed);
     }
+
+    public static void WaitForPageLoaded()
+    {
+        Browser.Driver.Waiters()
+            .Until(_driver => ((IJavaScriptExecutor)_driver).ExecuteScript("return document.readyState"))
+            .Equals("complete");
+    }
 }

@@ -10,6 +10,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.TestAutomation.Tests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.TestAutomation.TestData", "Epam.TestAutomation.TestData\Epam.TestAutomation.TestData.csproj", "{1BB032A4-D07F-440E-BED6-53E610EE2A1C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinalTest1", "FinalTest1\FinalTest1.csproj", "{0F818328-A324-4D7F-A0B8-4DC37359A79E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinalTest2", "FinalTest2\FinalTest2.csproj", "{3A4C29DB-F69D-458A-9E04-5C59221A6560}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +40,13 @@ Global
 		{1BB032A4-D07F-440E-BED6-53E610EE2A1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1BB032A4-D07F-440E-BED6-53E610EE2A1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1BB032A4-D07F-440E-BED6-53E610EE2A1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F818328-A324-4D7F-A0B8-4DC37359A79E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F818328-A324-4D7F-A0B8-4DC37359A79E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F818328-A324-4D7F-A0B8-4DC37359A79E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F818328-A324-4D7F-A0B8-4DC37359A79E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A4C29DB-F69D-458A-9E04-5C59221A6560}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A4C29DB-F69D-458A-9E04-5C59221A6560}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A4C29DB-F69D-458A-9E04-5C59221A6560}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A4C29DB-F69D-458A-9E04-5C59221A6560}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
