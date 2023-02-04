@@ -27,4 +27,9 @@ public class Dog : Animal, IWalkableAnimal
     {
         Console.WriteLine("I am walking and running.");
     }
+
+    public override string ToString()
+    {
+        return ($"I am {Name}").ToString();
+    }
 }
