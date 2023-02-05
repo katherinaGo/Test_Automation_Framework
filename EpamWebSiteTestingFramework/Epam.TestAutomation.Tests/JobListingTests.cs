@@ -78,7 +78,7 @@ public class JobListingTests : BaseTest
     public void CheckErrorMessageDisplayedWhenNothingFoundTest(TestDataToGetErrorModel model)
     {
         _mainPage.OpenJoinOurTeamPage();
-        _listingPage.FillFiltersWithInValidSearchJobData(job: model.SkillName, location: model.LocationName);
+        _listingPage.FillFiltersWithInValidSearchJobData(job: model.JobName, location: model.LocationName);
         var isErrorMessageDisplayed = _resultPage.IsErrorMessageIsDisplayedIfNothingFound();
         var expectedErrorMessage = "Sorry, your search returned no results. Please try another combination.";
         var actualErrorMessage = _resultPage.GetActualErrorMessageFromPage();

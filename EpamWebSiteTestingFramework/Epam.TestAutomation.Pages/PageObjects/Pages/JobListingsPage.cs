@@ -82,7 +82,7 @@ public class JobListingsPage : BasePage
         }
     }
 
-    public void FillFiltersWithInValidSearchJobData(string job = null, string skill = null, string location = null)
+    public void FillFiltersWithInValidSearchJobData(string job = null, string location = null)
     {
         if (!string.IsNullOrEmpty(job))
         {
@@ -98,13 +98,6 @@ public class JobListingsPage : BasePage
             LocationInput.SendKeys(location);
             ChosenCityLine.Click();
             Waiter.WaitForCondition(() => SelectedLocationChosen(location).IsElementDisplayedOnPage());
-        }
-
-        if (!string.IsNullOrEmpty(skill))
-        {
-            SkillsSection.Click();
-            Waiter.WaitForCondition(() => !SkillsDropdownPanel.GetTextFromAttribute("class").Contains("hidden"));
-            Waiter.WaitForCondition(() => ErrorMessageDropdownWhenNoSkillsFound.IsElementDisplayedOnPage());
         }
     }
 }

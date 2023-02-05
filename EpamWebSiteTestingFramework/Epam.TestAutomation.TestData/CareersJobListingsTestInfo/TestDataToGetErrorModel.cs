@@ -4,7 +4,7 @@ namespace Epam.TestAutomation.TestData.CareersJobListingsTestInfo;
 
 public class TestDataToGetErrorModel
 {
-    [JsonProperty("keywordToFindJob")] public string? SkillName;
+    [JsonProperty("keywordToFindJob")] public string? JobName;
 
     [JsonProperty("keywordToFindJobLocation")]
     public string? LocationName;
