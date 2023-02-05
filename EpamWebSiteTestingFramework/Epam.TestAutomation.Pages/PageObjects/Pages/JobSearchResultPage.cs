@@ -9,12 +9,18 @@ namespace Epam.TestAutomation.Pages.PageObjects.Pages;
 
 public class JobSearchResultPage : BasePage
 {
-    public ElementsList FoundResultList => new(By.XPath("//*[@class='search-result__item-name']"));
+    public ElementsList FoundResultListForJobs => new(By.XPath("//*[@class='search-result__item-name']"));
 
-    public Label SearchResultHeadingTitle => new(By.XPath("//*[@class='search-result__heading']"));
+    public ElementsList FoundResultListForLocations => new(By.XPath("//*[@class='search-result__location']"));
 
-    public Label ErrorMessageWhenNoJobsFound =>
-        new(By.XPath("//*[@class='search-result__error-message' and @role ='alert']"));
+    public Label SearchResultHeadingTitle => new(By
+        .XPath("//*[@class='search-result__heading' and @role='alert']"));
+
+    public Label ResultHeadingLabelWithSearchingWord(string searchWord) => new(By
+        .XPath($"//*[@class='search-result__heading'][contains(text(), '{searchWord}')]"));
+
+    public Label ErrorMessageWhenNoJobsFound => new(By
+        .XPath("//*[@class='search-result__error-message' and @role='alert']"));
 
     public override bool IsOpened()
     {
@@ -26,12 +32,30 @@ public class JobSearchResultPage : BasePage
         Browser.Driver.GetUrl().Equals(UiTestSettings.JobListingUrl);
     }
 
-    public bool IsFoundResultHasSearchWord(string searchWord)
+    public bool IsFoundResultDisplayed(string job = null, string location = null, string skill = null)
     {
-        Waiter.WaitForCondition(SearchResultHeadingTitle.IsElementDisplayedOnPage);
-        var foundResult = FoundResultList.GetElements().Select(
-            itemResult => itemResult.GetAttribute("innerText").Contains(searchWord));
-        return foundResult.Any();
+        if (job != null)
+        {
+            return FoundResultListForJobs
+                .GetElements()
+                .Select(itemResult => itemResult.GetAttribute("innerText").ToLower())
+                .Any(item => item.Contains(job));
+        }
+
+        if (location != null)
+        {
+            return FoundResultListForLocations
+                .GetElements()
+                .Select(itemResult => itemResult.GetAttribute("innerText").ToLower())
+                .Any(item => item.Contains(location.ToLower()));
+        }
+
+        if (skill != null)
+        {
+            return SearchResultHeadingTitle.IsElementDisplayedOnPage();
+        }
+
+        return false;
     }
 
     public bool IsErrorMessageIsDisplayedIfNothingFound()

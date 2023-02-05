@@ -11,9 +11,7 @@ public static class Waiter
     public static void WaitForCondition(Func<bool> condition) =>
         Browser.Driver.Waiters().Until(x => condition.Invoke());
 
-    public static void WaitSpinner()
-    {
+    public static void WaitSpinner() =>
         Browser.Driver.Waiters().Until(x =>
-            !Browser.Driver.FindElement(By.XPath("//div[contains(@class,'grid__spinner')]")).Displayed);
-    }
+            !Browser.Driver.FindElement(By.XPath("//*[@class='preloader' and @style = 'display: yes;']")).Displayed);
 }
