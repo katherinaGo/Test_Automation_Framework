@@ -59,8 +59,6 @@ public class JobListingsPage : BasePage
         if (!string.IsNullOrEmpty(job))
         {
             KeywordInputField.SendKeys(job);
-            FindButton.Click();
-            Waiter.WaitForCondition(() => SearchResultList.IsElementDisplayedOnPage());
         }
 
         if (!string.IsNullOrEmpty(location))
@@ -80,24 +78,7 @@ public class JobListingsPage : BasePage
             SkillOption(skill).Click();
             Waiter.WaitForCondition(() => ChosenSkillFilter.IsElementDisplayedOnPage());
         }
-    }
 
-    public void FillFiltersWithInValidSearchJobData(string job = null, string location = null)
-    {
-        if (!string.IsNullOrEmpty(job))
-        {
-            KeywordInputField.SendKeys(job);
-            FindButton.Click();
-        }
-
-        if (!string.IsNullOrEmpty(location))
-        {
-            Waiter.WaitForCondition(FiltersPanel.IsElementDisplayedOnPage);
-            LocationsDropdown.Click();
-            Waiter.WaitForCondition(() => DropdownLocationsPanel.IsElementDisplayedOnPage());
-            LocationInput.SendKeys(location);
-            ChosenCityLine.Click();
-            Waiter.WaitForCondition(() => SelectedLocationChosen(location).IsElementDisplayedOnPage());
-        }
+        FindButton.Click();
     }
 }
