@@ -15,7 +15,7 @@ public static class ScreenshotMaker
 
         var screenShooter = driver as ITakesScreenshot;
         var screenShot = screenShooter?.GetScreenshot();
-        screenShot?.SaveAsFile($"{folderPath}/{DateTime.Now:MM.dd.yyyy, HH:mm:ss}_{methodName}.jpeg",
+        screenShot?.SaveAsFile($"{folderPath}/{DateTime.Now:MM.dd.yyyy, HH.mm.ss}_{methodName}.jpeg",
             ScreenshotImageFormat.Png);
     }
 

@@ -14,15 +14,20 @@ public abstract class BaseElement
         Element = Browser.Driver.FindElement(locator);
     }
 
+    protected BaseElement(IWebElement element)
+    {
+        Element = element;
+    }
+
     public string GetText() => Element.Text.Trim();
-    public string GetTextFromAttribute() => Element.GetAttribute("innerText");
+    public string GetTextFromAttribute(string value) => Element.GetAttribute(value);
     public void Click() => Element.Click();
     public void SendKeys(string text) => Element.SendKeys(text);
     public void ClearField() => Element.Clear();
     public bool IsElementDisplayedOnPage() => Element.Displayed;
     public bool IsElementEnabled() => Element.Enabled;
-    public IWebElement FindTheElement(By locator) => Browser.Driver.FindElement(locator);
-    public ReadOnlyCollection<IWebElement> FindTheElements(By locator) => Browser.Driver.FindElements(locator);
+    public IWebElement FindTheElement(By locator) => Element.FindElement(locator);
+    public ReadOnlyCollection<IWebElement> FindTheElements(By locator) => Element.FindElements(locator);
 
     public bool IsElementOnView()
     {
@@ -57,5 +62,10 @@ public abstract class BaseElement
     private Actions CreateAction()
     {
         return Browser.Driver.GetActions();
+    }
+
+    public void HoverOnElement()
+    {
+        Browser.Driver.GetActions().MoveToElement(Element).Perform();
     }
 }

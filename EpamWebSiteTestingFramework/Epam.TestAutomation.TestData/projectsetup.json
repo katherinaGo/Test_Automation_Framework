@@ -1,7 +1,7 @@
 {
   "applicationUrl": "https://www.epam.com/",
-  "jobListingUrl": "https://www.epam.com/careers/job-listings/",
+  "jobListingUrl": "https://www.epam.com/careers/job-listings",
   "screenshotPath": "Screenshots",
   "logsPath": "Logs",
-  "webDriverTimeOut": 40
+  "webDriverTimeOut": 60
 }

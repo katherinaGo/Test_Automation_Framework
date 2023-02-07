@@ -13,8 +13,4 @@
       <PackageReference Include="System.Text.Json" Version="7.0.1" />
     </ItemGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\Epam.TestAutomation.TestData\Epam.TestAutomation.TestData.csproj" />
-    </ItemGroup>
-
 </Project>

@@ -5,9 +5,8 @@ namespace Epam.TestAutomation.TestData;
 public static class TestInfo
 {
     public static readonly string ApplicationUrl = SetAppSettingsFromJson("applicationUrl")!;
-
+    public static readonly string JobListingUrl = SetAppSettingsFromJson("jobListingUrl")!;
     public static readonly string ScreenshotPath = SetAppSettingsFromJson("screenshotPath")!;
-
     public static readonly string LogsPath = SetAppSettingsFromJson("logsPath")!;
 
     public static readonly double WebDriverTimeOut =

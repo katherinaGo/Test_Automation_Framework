@@ -24,6 +24,6 @@ public static class EnumParser
                 typeof(DescriptionAttribute), false), (
                 f, a) => new { Field = f, Att = a }).SingleOrDefault(a => ((DescriptionAttribute)a.Att)
                 .Description == description);
-        return field == null ? default(T) : (T)field.Field.GetRawConstantValue();
+        return field == null ? default : (T)field.Field.GetRawConstantValue();
     }
 }

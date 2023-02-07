@@ -2,6 +2,7 @@
 using Epam.TestAutomation.Core.DriverCreator;
 using Epam.TestAutomation.Core.Elements;
 using Epam.TestAutomation.Core.Helper;
+using Epam.TestAutomation.Core.Utils;
 using Epam.TestAutomation.Pages.PageObjects.Panels;
 using OpenQA.Selenium;
 
@@ -9,12 +10,31 @@ namespace Epam.TestAutomation.Pages.PageObjects.Pages;
 
 public class MainPage : BasePage
 {
-    private Header EpamHeader => new(By.XPath("//*[@class='header-ui']"));
 
-    private Label EngineeringTheFutureBanner =>
+    public Header EpamHeader => new(By.XPath("//*[@class='header-ui']"));
+
+    public Label EngineeringTheFutureBanner =>
         new(By.XPath("//*[contains(@class, 'background-video-ui background-video--narrow')]"));
 
-    private Button SliderButton => new(By.XPath("//*[@class='slider__navigation']"));
+    public Button SliderButton => new(By.XPath("//*[@class='slider__navigation']"));
+
+    public override bool IsOpened()
+    {
+        return Browser.Driver.GetUrl().Equals(UiTestSettings.ApplicationUrl);
+    }
+
+    public override void OpenUrl()
+    {
+        Browser.Driver.GotToWebPageUrl(UiTestSettings.ApplicationUrl);
+    }
+
+    public void OpenJoinOurTeamPage()
+    {
+        Waiter.WaitForCondition(EpamHeader.CareersLink.IsElementEnabled);
+        EpamHeader.CareersLink.HoverOnElement();
+        Waiter.WaitForCondition(EpamHeader.CareersBlog.IsElementDisplayedOnPage);
+        EpamHeader.CareerJoinOurTeam.Click();
+    }
 
     public override bool IsOpened() => Browser.Driver.GetUrl().Equals(UiTestSettings.ApplicationUrl);
 
