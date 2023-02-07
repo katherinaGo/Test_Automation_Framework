@@ -10,6 +10,7 @@ namespace Epam.TestAutomation.Pages.PageObjects.Pages;
 
 public class MainPage : BasePage
 {
+
     public Header EpamHeader => new(By.XPath("//*[@class='header-ui']"));
 
     public Label EngineeringTheFutureBanner =>
@@ -34,6 +35,8 @@ public class MainPage : BasePage
         Waiter.WaitForCondition(EpamHeader.CareersBlog.IsElementDisplayedOnPage);
         EpamHeader.CareerJoinOurTeam.Click();
     }
+
+    public override bool IsOpened() => Browser.Driver.GetUrl().Equals(UiTestSettings.ApplicationUrl);
 
     public bool IsEngineeringTheFutureBannerDisplayed() => EngineeringTheFutureBanner.IsElementDisplayedOnPage();
 
