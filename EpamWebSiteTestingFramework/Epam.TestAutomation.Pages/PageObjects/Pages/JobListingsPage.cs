@@ -54,7 +54,7 @@ public class JobListingsPage : BasePage
         Waiter.WaitForCondition(() => KeywordInputField.IsElementDisplayedOnPage());
     }
 
-    public void FillFiltersWithValidSearchJobData(string job = null, string skill = null, string location = null)
+    public void FillFiltersWithSearchJobData(string job = null, string skill = null, string location = null)
     {
         if (!string.IsNullOrEmpty(job))
         {

@@ -25,7 +25,7 @@ public class JobListingTests : BaseTest
     public void CheckSearchResultsRelatedToProfessionsTest(ProfessionsName searchWord)
     {
         _mainPage.OpenJoinOurTeamPage();
-        _listingPage.FillFiltersWithValidSearchJobData(job: searchWord.SearchJobKeyWord);
+        _listingPage.FillFiltersWithSearchJobData(job: searchWord.SearchJobKeyWord);
         Waiter.WaitForCondition(() => _listingPage.SearchResultList.IsElementDisplayedOnPage());
         var isResultFound = _resultPage.IsFoundResultDisplayed(job: searchWord.SearchJobKeyWord);
         Assert.That(isResultFound, Is.True,
@@ -37,7 +37,7 @@ public class JobListingTests : BaseTest
     public void CheckSearchResultsRelatedToLocationsTest(LocationsNameModel searchWord)
     {
         _mainPage.OpenJoinOurTeamPage();
-        _listingPage.FillFiltersWithValidSearchJobData(location: searchWord.SearchLocationKeyWord);
+        _listingPage.FillFiltersWithSearchJobData(location: searchWord.SearchLocationKeyWord);
         Waiter.WaitForCondition(() => _listingPage.SearchResultList.IsElementDisplayedOnPage());
         var isResultFound = _resultPage.IsFoundResultDisplayed(location: searchWord.SearchLocationKeyWord);
         Assert.That(isResultFound, Is.True,
@@ -49,7 +49,7 @@ public class JobListingTests : BaseTest
     public void CheckSearchResultsRelatedToSkillsTest(SkillsNameModel searchWord)
     {
         _mainPage.OpenJoinOurTeamPage();
-        _listingPage.FillFiltersWithValidSearchJobData(skill: searchWord.SearchSkillsKeyWord);
+        _listingPage.FillFiltersWithSearchJobData(skill: searchWord.SearchSkillsKeyWord);
         Waiter.WaitForCondition(() => _listingPage.SearchResultList.IsElementDisplayedOnPage());
         var isResultFound = _resultPage.IsFoundResultDisplayed(skill: searchWord.SearchSkillsKeyWord);
         Assert.That(isResultFound, Is.True,
@@ -61,7 +61,7 @@ public class JobListingTests : BaseTest
     public void CheckSearchResultsRelatedToAllFiltersTest(JobSearchByAllFiltersModel model)
     {
         _mainPage.OpenJoinOurTeamPage();
-        _listingPage.FillFiltersWithValidSearchJobData(model.ProffessionName, model.SkillName, model.LocationName);
+        _listingPage.FillFiltersWithSearchJobData(model.ProffessionName, model.SkillName, model.LocationName);
         Waiter.WaitForCondition(() => _listingPage.SearchResultList.IsElementDisplayedOnPage());
         var isJobFound = _resultPage.IsFoundResultDisplayed(job: model.ProffessionName);
         var isSkillFound = _resultPage.IsFoundResultDisplayed(skill: model.SkillName);
@@ -82,7 +82,7 @@ public class JobListingTests : BaseTest
     public void CheckErrorMessageDisplayedWhenNothingFoundTest(TestDataToGetErrorModel model)
     {
         _mainPage.OpenJoinOurTeamPage();
-        _listingPage.FillFiltersWithValidSearchJobData(job: model.JobName, location: model.LocationName);
+        _listingPage.FillFiltersWithSearchJobData(job: model.JobName, location: model.LocationName);
         var isErrorMessageDisplayed = _resultPage.IsErrorMessageIsDisplayedIfNothingFound();
         var expectedErrorMessage = "Sorry, your search returned no results. Please try another combination.";
         var actualErrorMessage = _resultPage.GetActualErrorMessageFromPage();
