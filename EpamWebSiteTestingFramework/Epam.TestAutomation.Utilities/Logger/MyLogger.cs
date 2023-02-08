@@ -16,7 +16,8 @@ public static class MyLogger
         Directory.CreateDirectory(pathToFolder);
 
         _logger = new LoggerConfiguration()
-            .WriteTo.File(Path.Combine(pathToFolder, loggerName + ".txt"), rollingInterval: RollingInterval.Day)
+            .WriteTo.File(Path.Combine(pathToFolder, loggerName + ".txt"),
+                rollingInterval: RollingInterval.Day)
             .CreateLogger();
     }
 

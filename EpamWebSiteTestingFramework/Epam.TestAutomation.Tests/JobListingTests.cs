@@ -1,6 +1,5 @@
 using Epam.TestAutomation.Core.Utils;
 using Epam.TestAutomation.Pages.PageObjects.Pages;
-using Epam.TestAutomation.TestData;
 using Epam.TestAutomation.TestData.CareersJobListingsTestInfo;
 
 namespace Epam.TestAutomation.Tests;
@@ -38,7 +37,6 @@ public class JobListingTests : BaseTest
     {
         _mainPage.OpenJoinOurTeamPage();
         _listingPage.FillFiltersWithSearchJobData(location: searchWord.SearchLocationKeyWord);
-        Waiter.WaitForCondition(() => _listingPage.SearchResultList.IsElementDisplayedOnPage());
         var isResultFound = _resultPage.IsFoundResultDisplayed(location: searchWord.SearchLocationKeyWord);
         Assert.That(isResultFound, Is.True,
             $"Found result doesn't contain search word '{searchWord.SearchLocationKeyWord}'.");
@@ -50,7 +48,6 @@ public class JobListingTests : BaseTest
     {
         _mainPage.OpenJoinOurTeamPage();
         _listingPage.FillFiltersWithSearchJobData(skill: searchWord.SearchSkillsKeyWord);
-        Waiter.WaitForCondition(() => _listingPage.SearchResultList.IsElementDisplayedOnPage());
         var isResultFound = _resultPage.IsFoundResultDisplayed(skill: searchWord.SearchSkillsKeyWord);
         Assert.That(isResultFound, Is.True,
             $"Nothing was found with skill: '{searchWord.SearchSkillsKeyWord}'.");
