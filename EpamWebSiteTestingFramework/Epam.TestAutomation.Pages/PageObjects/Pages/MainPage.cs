@@ -10,18 +10,12 @@ namespace Epam.TestAutomation.Pages.PageObjects.Pages;
 
 public class MainPage : BasePage
 {
-
     public Header EpamHeader => new(By.XPath("//*[@class='header-ui']"));
 
     public Label EngineeringTheFutureBanner =>
         new(By.XPath("//*[contains(@class, 'background-video-ui background-video--narrow')]"));
 
     public Button SliderButton => new(By.XPath("//*[@class='slider__navigation']"));
-
-    public override bool IsOpened()
-    {
-        return Browser.Driver.GetUrl().Equals(UiTestSettings.ApplicationUrl);
-    }
 
     public override void OpenUrl()
     {
