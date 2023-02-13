@@ -20,10 +20,9 @@ public static class EnumParser
 
         FieldInfo[] fields = type.GetFields();
         var field = fields
-            .SelectMany(f => f.GetCustomAttributes(
-                typeof(DescriptionAttribute), false), (
-                f, a) => new { Field = f, Att = a }).SingleOrDefault(a => ((DescriptionAttribute)a.Att)
-                .Description == description);
+            .SelectMany(f => f.GetCustomAttributes(typeof(DescriptionAttribute), false),
+                (f, a) => new { Field = f, Att = a })
+            .SingleOrDefault(a => ((DescriptionAttribute)a.Att).Description == description);
         return field == null ? default : (T)field.Field.GetRawConstantValue();
     }
 }

@@ -1,3 +1,4 @@
+using System.Drawing;
 using Epam.TestAutomation.Core.Enums;
 using Epam.TestAutomation.Core.Helper;
 using Epam.TestAutomation.Utilities.Logger;

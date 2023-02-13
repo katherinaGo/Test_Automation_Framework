@@ -38,6 +38,12 @@ public class JobListingsPage : BasePage
 
     public Panel FiltersPanel => new(By.Id("jobSearchFilterForm"));
 
+    public Label ErrorMessageDropdownWhenNoSkillsFound => new(By
+        .XPath("//*[@class='multi-select-dropdown' and @role='tree']/*[@class='search-result__error-message']"));
+
+    public Panel SearchResultList => new(By
+        .XPath("//*[@class='search-result__heading' and contains(text(), 'related')]"));
+
     public override bool IsOpened()
     {
         return Browser.Driver.GetUrl().Equals(UiTestSettings.JobListingUrl);
@@ -50,51 +56,31 @@ public class JobListingsPage : BasePage
         Waiter.WaitForCondition(() => KeywordInputField.IsElementDisplayedOnPage());
     }
 
-    public void SearchJobsByKeyword(string searchWord)
+    public void FillFiltersWithSearchJobData(string job = null, string skill = null, string location = null)
     {
-        Waiter.WaitForCondition(FiltersPanel.IsElementDisplayedOnPage);
-        KeywordInputField.SendKeys(searchWord);
-        FindButton.Click();
-    }
+        if (!string.IsNullOrEmpty(job))
+        {
+            KeywordInputField.SendKeys(job);
+        }
 
-    public void SearchJobLocationsByKeyWord(string searchWord)
-    {
-        LocationsDropdown.Click();
-        Waiter.WaitForCondition(DropdownLocationsPanel.IsElementDisplayedOnPage);
-        LocationInput.SendKeys(searchWord);
-        ChosenCityLine.Click();
-        Waiter.WaitForCondition(SelectedLocationChosen(searchWord).IsElementDisplayedOnPage);
-    }
+        if (!string.IsNullOrEmpty(location))
+        {
+            Waiter.WaitForCondition(() => FiltersPanel.IsElementDisplayedOnPage());
+            LocationsDropdown.Click();
+            Waiter.WaitForCondition(() => DropdownLocationsPanel.IsElementDisplayedOnPage());
+            LocationInput.SendKeys(location);
+            ChosenCityLine.Click();
+            Waiter.WaitForCondition(() => SelectedLocationChosen(location).IsElementDisplayedOnPage());
+        }
 
-    public void SearchJobSkillsByKeyWord(string searchWord)
-    {
-        SkillsSection.Click();
-        Thread.Sleep(1300); // can't find locator for skillsDropdown panel that it could work without Thread.Sleep 
-        SkillOption(searchWord).Click();
-        FindButton.Click();
-        Waiter.WaitForCondition(ChosenSkillFilter.IsElementDisplayedOnPage);
-    }
+        if (!string.IsNullOrEmpty(skill))
+        {
+            SkillsSection.Click();
+            Waiter.WaitForCondition(() => !SkillsDropdownPanel.GetTextFromAttribute("class").Contains("hidden"));
+            SkillOption(skill).Click();
+            Waiter.WaitForCondition(() => ChosenSkillFilter.IsElementDisplayedOnPage());
+        }
 
-    public void FillFiltersWithSearchJobData(string job, string skill, string location)
-    {
-        KeywordInputField.SendKeys(job);
-        LocationsDropdown.Click();
-        Waiter.WaitForCondition(DropdownLocationsPanel.IsElementDisplayedOnPage);
-        LocationInput.SendKeys(location);
-        ChosenCityLine.Click();
-        SkillsSection.Click();
-        Thread.Sleep(1300); // can't find locator for skillsDropdown panel that it could work without Thread.Sleep 
-        SkillOption(skill).Click();
-        FindButton.Click();
-    }
-
-    public void FillFiltersWithSearchJobDataToGetErrorMessage(string job, string location)
-    {
-        KeywordInputField.SendKeys(job);
-        LocationsDropdown.Click();
-        Waiter.WaitForCondition(DropdownLocationsPanel.IsElementDisplayedOnPage);
-        LocationInput.SendKeys(location);
-        ChosenCityLine.Click();
         FindButton.Click();
     }
 }

@@ -7,15 +7,20 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Epam.TestAutomation.Core\Epam.TestAutomation.Core.csproj" />
+        <ProjectReference Include="..\Epam.TestAutomation.Core\Epam.TestAutomation.Core.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Remove="PageObjects\Pages\CareersPage.cs" />
+        <Compile Remove="PageObjects\Pages\CareersPage.cs"/>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="System.Text.Json" Version="7.0.1" />
+        <PackageReference Include="System.Text.Json" Version="7.0.1"/>
+        <Compile Remove="PageObjects\Pages\CareersPage.cs"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="System.Text.Json" Version="7.0.1"/>
     </ItemGroup>
 
 </Project>
