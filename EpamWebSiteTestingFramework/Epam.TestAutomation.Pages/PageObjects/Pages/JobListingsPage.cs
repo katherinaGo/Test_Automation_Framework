@@ -9,26 +9,27 @@ namespace Epam.TestAutomation.Pages.PageObjects.Pages;
 
 public class JobListingsPage : BasePage
 {
-    public TextInput KeywordInputField => new(By.XPath("//*[@id='new_form_job_search_1445745853_copy-keyword']"));
+    public TextInput KeywordInputField => new(By.XPath("//*[@placeholder='Keyword']"));
 
-    public Dropdown LocationsDropdown => new(By.XPath("//*[@class='select2-selection select2-selection--single']"));
+    public Dropdown LocationsDropdown => new(By.XPath("//*[@title='All Locations'][@role='textbox']"));
 
+    public ElementsList LocationsDropdownList => new(By.XPath("//*[@class='select2-results__option']"));
     public Panel DropdownLocationsPanel => new(By.XPath("//*[@class='select2-results__options open']"));
 
     public Button FindButton => new(By.XPath("//*[@type='submit']"));
 
-    public Button SelectedLocationChosen(string cityName) => new(By
+    public Button SelectedLocationChosen(string cityName) => new Button(By
         .XPath($"//*[@class='select2-selection__rendered'][contains(text(), '{cityName}')]"));
 
     public Button ChosenCityLine => new(By
-        .XPath("//*[@class='select2-results__option select2-results__option--highlighted']"));
+        .XPath(" //*[contains(@class, 'select2-results__option')][contains(@role, option)]"));
 
-    public TextInput LocationInput => new(By.XPath("//*[@class='select2-search__field']"));
+    public TextInput LocationInput => new(By.XPath("//*[@class='select2-search__field'][@type='text']"));
 
-    public Label SkillsSection => new(By.XPath("//*[@class='default-label'][contains(text(), 'All Skills')]"));
+    public Label SkillsSection => new(By.XPath("//*[@class='selected-params ']/*[@class='default-label']"));
 
     public Dropdown SkillsDropdownPanel => new(By
-        .XPath("//*[@class='multi-select-dropdown' and contains(@aria-expanded, 'true')]"));
+        .XPath("//*[@class='multi-select-dropdown' and contains(@aria-hidden, 'false')]"));
 
     public Checkbox SkillOption(string skill) => new(By
         .XPath($"//*[@class='checkbox-custom-label'][contains(text(), '{skill}')]"));
@@ -48,9 +49,10 @@ public class JobListingsPage : BasePage
         return Browser.Driver.GetUrl().Equals(UiTestSettings.JobListingUrl);
     }
 
-    public override void OpenUrl()
+    public void OpenUrl()
     {
         Browser.Driver.GotToWebPageUrl(UiTestSettings.JobListingUrl);
+        Waiter.WaitForPageLoading();
         Waiter.WaitForCondition(() => KeywordInputField.IsElementDisplayedOnPage());
     }
 
@@ -79,6 +81,23 @@ public class JobListingsPage : BasePage
             Waiter.WaitForCondition(() => ChosenSkillFilter.IsElementDisplayedOnPage());
         }
 
+        FindButton.Click();
+    }
+
+    public void SearchJobsByKeyword(string searchWord)
+    {
+        Waiter.WaitForCondition(FiltersPanel.IsElementDisplayedOnPage);
+        KeywordInputField.SendKeys(searchWord);
+        FindButton.Click();
+    }
+
+    public void FillFiltersWithSearchJobDataToGetErrorMessage(string job, string location)
+    {
+        KeywordInputField.SendKeys(job);
+        LocationsDropdown.Click();
+        Waiter.WaitForCondition(DropdownLocationsPanel.IsElementDisplayedOnPage);
+        LocationInput.SendKeys(location);
+        ChosenCityLine.Click();
         FindButton.Click();
     }
 }

@@ -16,6 +16,11 @@
 
     <ItemGroup>
         <PackageReference Include="System.Text.Json" Version="7.0.1"/>
+        <Compile Remove="PageObjects\Pages\CareersPage.cs"/>
     </ItemGroup>
-    
+
+    <ItemGroup>
+        <PackageReference Include="System.Text.Json" Version="7.0.1"/>
+    </ItemGroup>
+
 </Project>

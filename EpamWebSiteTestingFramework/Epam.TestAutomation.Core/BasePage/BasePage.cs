@@ -5,7 +5,7 @@ namespace Epam.TestAutomation.Core.BasePage;
 public abstract class BasePage
 {
     public abstract bool IsOpened();
-    public abstract void OpenUrl();
+
     public static string GetPageUrl() => Browser.Driver.GetUrl();
     public static string GetPageTitle() => Browser.Driver.Title;
 }

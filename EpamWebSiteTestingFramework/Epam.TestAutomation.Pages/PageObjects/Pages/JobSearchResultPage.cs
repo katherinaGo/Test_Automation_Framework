@@ -12,22 +12,27 @@ public class JobSearchResultPage : BasePage
     public ElementsList FoundResultListForJobs => new(By.XPath("//*[@class='search-result__item-name']"));
 
     public ElementsList FoundResultListForLocations => new(By.XPath("//*[@class='search-result__location']"));
+    private readonly string _jobSearchResultPageUrl = UiTestSettings.JobListingUrl + "?recruitingUrl=";
+    public ElementsList FoundResultList => new(By.XPath("//*[@class='search-result__item-name']"));
 
-    public Label SearchResultHeadingTitle => new(By
-        .XPath("//*[@class='search-result__heading' and @role='alert']"));
+    public Label SearchResultHeadingTitle => new(By.XPath("//*[@class='search-result__heading']"));
+
+    public Label ErrorMessageWhenNoJobsFound => new(By
+        .XPath("//*[@class='search-result__error-message' and contains(@role, 'alert')]"));
+
+    public Button ViewAndApply => new(By.XPath("//*[@class='search-result__item-apply']"));
+
+    public Panel SearchPanel => new(By.Id("jobSearchFilterForm"));
 
     public Label ResultHeadingLabelWithSearchingWord(string searchWord) => new(By
         .XPath($"//*[@class='search-result__heading'][contains(text(), '{searchWord}')]"));
 
-    public Label ErrorMessageWhenNoJobsFound => new(By
-        .XPath("//*[@class='search-result__error-message' and @role='alert']"));
-
     public override bool IsOpened()
     {
-        return Browser.Driver.GetUrl().Equals(UiTestSettings.JobListingUrl);
+        return Browser.Driver.GetUrl().Contains(_jobSearchResultPageUrl);
     }
 
-    public override void OpenUrl()
+    public void OpenUrl()
     {
         Browser.Driver.GetUrl().Equals(UiTestSettings.JobListingUrl);
     }
@@ -62,6 +67,13 @@ public class JobSearchResultPage : BasePage
     {
         Waiter.WaitForCondition(ErrorMessageWhenNoJobsFound.IsElementOnView);
         return ErrorMessageWhenNoJobsFound.IsElementDisplayedOnPage();
+    }
+
+    public bool IsFoundResultHasSearchWord(string searchWord)
+    {
+        var foundResult = FoundResultList.GetElements().Select(
+            itemResult => itemResult.GetAttribute("innerText").Contains(searchWord));
+        return foundResult.Any();
     }
 
     public string GetActualErrorMessageFromPage() => ErrorMessageWhenNoJobsFound.GetTextFromAttribute("innerText");
