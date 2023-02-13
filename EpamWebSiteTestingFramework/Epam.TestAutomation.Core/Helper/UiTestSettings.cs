@@ -13,6 +13,5 @@ public static class UiTestSettings
     public static string ApplicationUrl => TestInfo.ApplicationUrl;
     public static string JobListingUrl => TestInfo.JobListingUrl;
 
-    public static string JobListingUrl => TestInfo.JobListingUrl;
     private static BrowserType Browser => EnumParser.GetEnumValueByDescription<BrowserType>("DefaultBrowser");
 }

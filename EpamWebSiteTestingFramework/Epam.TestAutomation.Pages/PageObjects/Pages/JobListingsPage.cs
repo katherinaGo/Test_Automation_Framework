@@ -83,4 +83,21 @@ public class JobListingsPage : BasePage
 
         FindButton.Click();
     }
+
+    public void SearchJobsByKeyword(string searchWord)
+    {
+        Waiter.WaitForCondition(FiltersPanel.IsElementDisplayedOnPage);
+        KeywordInputField.SendKeys(searchWord);
+        FindButton.Click();
+    }
+
+    public void FillFiltersWithSearchJobDataToGetErrorMessage(string job, string location)
+    {
+        KeywordInputField.SendKeys(job);
+        LocationsDropdown.Click();
+        Waiter.WaitForCondition(DropdownLocationsPanel.IsElementDisplayedOnPage);
+        LocationInput.SendKeys(location);
+        ChosenCityLine.Click();
+        FindButton.Click();
+    }
 }

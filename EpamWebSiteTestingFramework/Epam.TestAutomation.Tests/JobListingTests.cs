@@ -16,7 +16,7 @@ public class JobListingTests : BaseTest
     {
         _mainPage = new();
         _resultPage = new();
-        _listingsPage = new();
+        _listingPage = new();
     }
 
     [Test]

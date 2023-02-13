@@ -69,5 +69,12 @@ public class JobSearchResultPage : BasePage
         return ErrorMessageWhenNoJobsFound.IsElementDisplayedOnPage();
     }
 
+    public bool IsFoundResultHasSearchWord(string searchWord)
+    {
+        var foundResult = FoundResultList.GetElements().Select(
+            itemResult => itemResult.GetAttribute("innerText").Contains(searchWord));
+        return foundResult.Any();
+    }
+
     public string GetActualErrorMessageFromPage() => ErrorMessageWhenNoJobsFound.GetTextFromAttribute("innerText");
 }
