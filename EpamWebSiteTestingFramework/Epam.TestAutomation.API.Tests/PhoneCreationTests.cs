@@ -3,10 +3,13 @@ using Epam.TestAutomation.API.Controllers;
 using Epam.TestAutomation.API.Models.RequestModels.Phone;
 using Epam.TestAutomation.API.Models.SharedModels.Phone;
 using Epam.TestAutomation.API.Models.ResponseModels.Phone;
+using FluentAssertions;
+using FluentAssertions.Execution;
 using RestSharp;
 
 namespace Epam.TestAutomation.API.Tests;
 
+[TestFixture]
 public class PhoneCreationTests
 {
     private string phoneIdToDelete;
@@ -29,14 +32,16 @@ public class PhoneCreationTests
         phoneIdToDelete = receivedPhone.id;
         var deletedPhone = new PhoneController(new CustomRestClient()).DeletePhone<RestResponse>(phoneIdToDelete);
         var isPhoneDeleted = new PhoneController(new CustomRestClient()).GetPhone<RestResponse>(phoneIdToDelete);
-        Assert.Multiple(() =>
+
+        using (new AssertionScope())
         {
-            Assert.That(receivedPhone, Is.Not.Null, $"Phone with id {createdPhone.id} was not created!");
-            Assert.That(deletedPhone.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK),
-                $"Phone with '{phoneIdToDelete}' wasn't deleted. Status code: '{deletedPhone.Response.StatusCode}'");
-            Assert.That(isPhoneDeleted.Response.StatusCode, Is.EqualTo(HttpStatusCode.NotFound),
+            receivedPhone.Should().NotBeNull("Phone with id {createdPhone.id} was not created!");
+            deletedPhone.Response.StatusCode.Should()
+                .Be(HttpStatusCode.OK,
+                    "Phone with '{phoneIdToDelete}' wasn't deleted. Status code: '{deletedPhone.Response.StatusCode}'");
+            isPhoneDeleted.Response.StatusCode.Should().Be(HttpStatusCode.NotFound,
                 "Status code doesn't correspond 404 when get deleted item.");
-        });
+        }
     }
 
     [Test]
@@ -57,15 +62,19 @@ public class PhoneCreationTests
         phoneIdToDelete = receivedPhone.id;
         var deletedPhone = new PhoneController(new CustomRestClient()).DeletePhone<RestResponse>(phoneIdToDelete);
         var isPhoneDeleted = new PhoneController(new CustomRestClient()).GetPhone<RestResponse>(phoneIdToDelete);
-        Assert.Multiple(() =>
+
+        using (new AssertionScope())
         {
-            Assert.That(receivedPhone.data.capacity, Is.EqualTo(createdPhone.data.capacity),
-                $"Phone with id {createdPhone.id} was not created or capacity differs from '{phoneToCreate.data.capacity}'!");
-            Assert.That(deletedPhone.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK),
-                $"Phone with '{phoneIdToDelete}' wasn't deleted. Status code: '{deletedPhone.Response.StatusCode}'");
-            Assert.That(isPhoneDeleted.Response.StatusCode, Is.EqualTo(HttpStatusCode.NotFound),
-                "Status code doesn't correspond 404 when get deleted item.");
-        });
+            receivedPhone.data.capacity.Should()
+                .Be(createdPhone.data.capacity,
+                    $"Phone with id {createdPhone.id} was not created or capacity differs from '{phoneToCreate.data.capacity}'!");
+            deletedPhone.Response.StatusCode.Should()
+                .Be(HttpStatusCode.OK,
+                    $"Phone with '{phoneIdToDelete}' wasn't deleted. Status code: '{deletedPhone.Response.StatusCode}'");
+            isPhoneDeleted.Response.StatusCode.Should()
+                .Be(HttpStatusCode.NotFound,
+                    "Status code doesn't correspond 404 when get deleted item.");
+        }
     }
 
     [Test]
@@ -90,14 +99,16 @@ public class PhoneCreationTests
         receivedPhone = new PhoneController(new CustomRestClient()).GetPhone<Phone>(receivedPhone.id).Phone;
         var deletedPhone = new PhoneController(new CustomRestClient()).DeletePhone<RestResponse>(phoneIdToDelete);
         var isPhoneDeleted = new PhoneController(new CustomRestClient()).GetPhone<RestResponse>(phoneIdToDelete);
-        Assert.Multiple(() =>
+
+        using (new AssertionScope())
         {
-            Assert.That(createdPhone.data.color, Is.EqualTo(receivedPhone.data.color),
-                "Color field wasn't updated to the new one.");
-            Assert.That(deletedPhone.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK),
-                $"Phone with '{phoneIdToDelete}' wasn't deleted. Status code: '{deletedPhone.Response.StatusCode}'");
-            Assert.That(isPhoneDeleted.Response.StatusCode, Is.EqualTo(HttpStatusCode.NotFound),
-                "Status code doesn't correspond 404 when get deleted item.");
-        });
+            createdPhone.data.color.Should()
+                .Be(receivedPhone.data.color, "Color field wasn't updated to the new one.");
+            deletedPhone.Response.StatusCode.Should()
+                .Be(HttpStatusCode.OK,
+                    $"Phone with '{phoneIdToDelete}' wasn't deleted. Status code: '{deletedPhone.Response.StatusCode}'");
+            isPhoneDeleted.Response.StatusCode.Should()
+                .Be(HttpStatusCode.NotFound, "Status code doesn't correspond 404 when get deleted item.");
+        }
     }
 }
